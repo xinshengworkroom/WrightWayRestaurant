@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f36948ecebf94e73a1d548f8af6330a8" Name="Diagram1">
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.Customer" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.EmailConfig" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.Food" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.FoodType" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.Order" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.OrderDetail" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.OrderState" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WrightWayRestaurant.Model.SystemUser" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_CustomerId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_EmailConfig_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_Food_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_FoodId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_TypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_Order_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_StateId" ManuallyRouted="false" />
+        <AssociationConnector Association="WrightWayRestaurant.Model.FK_OrderState_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

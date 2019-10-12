@@ -1,0 +1,16 @@
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\WrightWayRestaurant.Services.dll.config
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\WrightWayRestaurant.Services.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\WrightWayRestaurant.Services.pdb
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\EntityFramework.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\EntityFramework.SqlServer.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\WrightWayRestaurant.Model.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\WrightWayRestaurant.Model.pdb
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\EntityFramework.xml
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\EntityFramework.SqlServer.xml
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\obj\Debug\WrightWayRestaurant.Services.csprojAssemblyReference.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\obj\Debug\WrightWayRestaurant.Services.csproj.CoreCompileInputs.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\obj\Debug\WrightWayRestaurant.Services.csproj.CopyComplete
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\obj\Debug\WrightWayRestaurant.Services.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Services\obj\Debug\WrightWayRestaurant.Services.pdb

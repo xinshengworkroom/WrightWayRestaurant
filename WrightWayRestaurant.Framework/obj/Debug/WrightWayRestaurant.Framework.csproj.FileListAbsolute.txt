@@ -1,0 +1,8 @@
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\bin\Debug\WrightWayRestaurant.Framework.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\bin\Debug\WrightWayRestaurant.Framework.pdb
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\obj\Debug\WrightWayRestaurant.Framework.csprojAssemblyReference.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\obj\Debug\WrightWayRestaurant.Framework.csproj.CoreCompileInputs.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\obj\Debug\WrightWayRestaurant.Framework.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\obj\Debug\WrightWayRestaurant.Framework.pdb
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\bin\Debug\OpenPop.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Framework\obj\Debug\WrightWayRestaurant.Framework.csproj.CopyComplete

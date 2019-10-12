@@ -1,0 +1,13 @@
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\WrightWayRestaurant.Model.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\WrightWayRestaurant.Model.pdb
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\EntityFramework.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\EntityFramework.xml
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\obj\Debug\WrightWayRestaurant.Model.csprojAssemblyReference.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\obj\Debug\WrightWayRestaurant.Model.csproj.CoreCompileInputs.cache
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\obj\Debug\WrightWayRestaurant.Model.csproj.CopyComplete
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\obj\Debug\WrightWayRestaurant.Model.dll
+D:\360安全浏览器下载\assignment requirements\WrightWayRestaurant\WrightWayRestaurant.Model\obj\Debug\WrightWayRestaurant.Model.pdb
