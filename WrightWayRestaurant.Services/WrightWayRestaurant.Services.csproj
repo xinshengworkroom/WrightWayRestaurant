@@ -48,7 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implement\CustomerService.cs" />
     <Compile Include="Implement\EmailConfigService.cs" />
+    <Compile Include="Implement\FoodService.cs" />
+    <Compile Include="Implement\FoodTypeService.cs" />
+    <Compile Include="Implement\OrderDetailService.cs" />
+    <Compile Include="Implement\OrderService.cs" />
+    <Compile Include="Implement\OrderStateService.cs" />
     <Compile Include="Implement\SystemUserService.cs" />
     <Compile Include="Interface\ICustomerService.cs" />
     <Compile Include="Interface\IEmailConfigService.cs" />

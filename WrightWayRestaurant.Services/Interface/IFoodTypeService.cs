@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using WrightWayRestaurant.Model;
+using WrightWayRestaurant.Model.QueryEntity;
 
 namespace WrightWayRestaurant.Services.Interface
 {
-    interface IFoodTypeService
+    public interface IFoodTypeService
     {
+        FoodType FirstOrDefault(FoodTypeQuery query);
+
+        List<FoodType> Get(FoodTypeQuery query);
+
+        int Add(FoodType entity);
+
+        int Update(FoodType entity);
+
+        int Delete(int entityId);
     }
 }

@@ -1,0 +1,161 @@
+﻿@model WrightWayRestaurant.Web.Models.SystemUserLoginViewModel
+@{
+    ViewBag.Title = "Manager Login";
+    Layout = null;
+}
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manager Login</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            background: url(../images/login_bg_0.jpg) #f8f6e9 0 0 no-repeat;
+            background-size: cover;
+        }
+        .signin {
+            width: 477px;
+            height: 479px;
+            background: url(../images/login_bg.png) no-repeat;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -239px;
+            margin-left: -238px;
+        }
+        .signin-head {
+            margin: 0 auto;
+            padding-top: 30px;
+            width: 120px;
+        }
+        .form-signin {
+            max-width: 330px;
+            padding: 43px 15px 15px 15px;
+            margin: 0 auto;
+        }
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="text"] {
+            margin-bottom: 14px;
+            border-radius: 0;
+            background: url(../images/login_user.png) 0 0 #bdbdbd no-repeat;
+            padding-left: 60px;
+            color: #FFFFFF;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-radius: 0;
+            background: url(../images/login_pas.png) 0 0 #bdbdbd no-repeat;
+            padding-left: 60px;
+            color: #FFFFFF;
+        }
+        .form-signin button {
+            border-radius: 0;
+        }
+    </style>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+</head>
+<body>
+    <div class="signin">
+        <div class="signin-head">
+            @*<img src="user.png" alt="" class="img-circle" />*@
+            <h1><span>Login</span></h1>
+        </div>
+        @using (Ajax.BeginForm("Login", "SystemUser", null, new AjaxOptions { OnBegin = "onLoginBegin", OnFailure = "onLoginFailure", OnComplete = "onLoginComplete", HttpMethod = "Post" }, new { @class = "form-signin", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.UserName, new { @placeholder = "input user name",@class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger text-error", })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @placeholder = "input password", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-error" })
+            </div>
+            <div class="form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger text-error" })
+                <input type="submit" value="Login" class="btn btn-lg btn-warning btn-block login-btn" />
+            </div>
+        }
+    </div>
+
+    <script type="text/javascript">
+
+        function onLoginBegin(e) {
+            $("span[data-valmsg-for]").text("");
+            if ($.trim($('#UserName').val()) == '') {
+                $("span[data-valmsg-for='UserName']").text("input user name");
+                $('#UserName').focus();
+                return false;
+            }
+
+
+            if ($.trim($('#Password').val()) == '') {
+                $("span[data-valmsg-for='Password']").text("input password");
+                $('#Password').focus();
+                return false;
+            }
+            $("span[data-valmsg-for]").text("");
+            $('.login-btn').val('login...').attr("disabled", true);
+        }
+
+        function onLoginFailure(e) {
+            $('.login-btn').val('Login').attr("disabled", false);
+        }
+
+        function onLoginComplete(e) {
+            try {
+                var json = e.responseJSON;
+                if (json && json.Code != undefined && json.Code == 0) {
+                    $('.login-btn').val('Logon success is jumping...');
+                    window.location = "@Url.Action( "Index", "Manage",new { area=""})";
+                } else {
+                    $('.login-btn').val('Login').attr("disabled", false);
+                    if (e.status !== 500) {
+                        for (var name in json.Data) {
+                            var obj = json.Data[name];
+                            if (obj.Errors.length > 0) {
+                                $("span[data-valmsg-for='" + name + "']").text(obj.Errors[0].ErrorMessage);
+                            }
+                        }
+                    } else {
+                        alert("Logon error");
+                    }
+                }
+            } catch (ex) {
+                alert("Logon error");
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+<h2>Customer Index</h2>
+<div role="tabpanel" class="tab-pane active" id="char">
+
+    <div class="check-div">
+        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addChar">添加权限</button>
+    </div>
+    <div class="data-div">
+        <div class="row tableHeader">
+            <div class="col-xs-1 ">
+                编码
+            </div>
+            <div class="col-xs-4">
+                权限名
+            </div>
+            <div class="col-xs-5">
+                描述
+            </div>
+            <div class="col-xs-2">
+                操作
+            </div>
+        </div>
+        <div class="tablebody">
+            <div class="row">
+                <div class="col-xs-1 ">
+                    1
+                </div>
+                <div class="col-xs-4">
+                    <span>管理员</span>
+                </div>
+                <div class="col-xs-5">
+                    管理员具有超年权限
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#changeChar">修改</button>
+                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteChar">删除</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1 ">
+                    2
+                </div>
+                <div class="col-xs-4">
+                    <span>游客</span>
+                </div>
+                <div class="col-xs-5">
+                    可以查看信息
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success btn-xs">修改</button>
+                    <button class="btn btn-danger btn-xs">删除</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

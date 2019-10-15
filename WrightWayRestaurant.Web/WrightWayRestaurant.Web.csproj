@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -123,32 +129,107 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attribute\ManageAuthorizeAttribute.cs" />
+    <Compile Include="Attribute\WebAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\EmailConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\SystemUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManageContext.cs" />
+    <Compile Include="Models\CustomerViewModels.cs" />
+    <Compile Include="Models\SystemUserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\common.css" />
+    <Content Include="Content\css\commonCopy.css" />
+    <Content Include="Content\css\flat-ui.min.css" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery.nouislider.css" />
+    <Content Include="Content\css\jquery.nouislider.min.css" />
+    <Content Include="Content\css\slide.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\lato\lato-black.svg" />
+    <Content Include="Content\fonts\lato\lato-bold.svg" />
+    <Content Include="Content\fonts\lato\lato-bolditalic.svg" />
+    <Content Include="Content\fonts\lato\lato-italic.svg" />
+    <Content Include="Content\fonts\lato\lato-light.svg" />
+    <Content Include="Content\fonts\lato\lato-regular.svg" />
+    <Content Include="Content\images\captchaCode.jpg" />
+    <Content Include="Content\images\circle.png" />
+    <Content Include="Content\images\icon_card.png" />
+    <Content Include="Content\images\icon_card_grey.png" />
+    <Content Include="Content\images\icon_change.png" />
+    <Content Include="Content\images\icon_change_grey.png" />
+    <Content Include="Content\images\icon_char.png" />
+    <Content Include="Content\images\icon_chara.png" />
+    <Content Include="Content\images\icon_chara_grey.png" />
+    <Content Include="Content\images\icon_char_grey.png" />
+    <Content Include="Content\images\icon_house.png" />
+    <Content Include="Content\images\icon_house_grey.png" />
+    <Content Include="Content\images\icon_rule.png" />
+    <Content Include="Content\images\icon_rule_grey.png" />
+    <Content Include="Content\images\icon_source.png" />
+    <Content Include="Content\images\icon_source_grey.png" />
+    <Content Include="Content\images\icon_user.png" />
+    <Content Include="Content\images\icon_user_grey.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\progress02.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\images\Thumbs.db" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\lato\lato-black.eot" />
+    <Content Include="Content\fonts\lato\lato-black.ttf" />
+    <Content Include="Content\fonts\lato\lato-black.woff" />
+    <Content Include="Content\fonts\lato\lato-bold.eot" />
+    <Content Include="Content\fonts\lato\lato-bold.ttf" />
+    <Content Include="Content\fonts\lato\lato-bold.woff" />
+    <Content Include="Content\fonts\lato\lato-bolditalic.eot" />
+    <Content Include="Content\fonts\lato\lato-bolditalic.ttf" />
+    <Content Include="Content\fonts\lato\lato-bolditalic.woff" />
+    <Content Include="Content\fonts\lato\lato-italic.eot" />
+    <Content Include="Content\fonts\lato\lato-italic.ttf" />
+    <Content Include="Content\fonts\lato\lato-italic.woff" />
+    <Content Include="Content\fonts\lato\lato-light.eot" />
+    <Content Include="Content\fonts\lato\lato-light.ttf" />
+    <Content Include="Content\fonts\lato\lato-light.woff" />
+    <Content Include="Content\fonts\lato\lato-regular.eot" />
+    <Content Include="Content\fonts\lato\lato-regular.ttf" />
+    <Content Include="Content\fonts\lato\lato-regular.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.nouislider.js" />
+    <Content Include="Scripts\jquery.nouislider.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -168,20 +249,35 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\SystemUser\Login.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Shared\_ManageLayout.cshtml" />
+    <Content Include="Views\Manage\LeftMenu.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\EmailConfig\Index.cshtml" />
+    <Content Include="Views\SystemUser\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Order\BookSeat.cshtml" />
+    <Content Include="Views\Order\OrderFood.cshtml" />
+    <Content Include="Views\Information\Index.cshtml" />
+    <Content Include="Views\Information\Location.cshtml" />
+    <Content Include="Views\Information\Contact.cshtml" />
+    <Content Include="Views\Information\OurTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\WebBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

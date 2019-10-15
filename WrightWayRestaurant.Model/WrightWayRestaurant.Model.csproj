@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ResultData.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -71,6 +72,7 @@
     <Compile Include="EmailConfig.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enums\ResultStatusEnums.cs" />
     <Compile Include="Food.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -87,6 +89,14 @@
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryEntity\CustomerQuery.cs" />
+    <Compile Include="QueryEntity\EmailConfigQuery.cs" />
+    <Compile Include="QueryEntity\FoodQuery.cs" />
+    <Compile Include="QueryEntity\FoodTypeQuery.cs" />
+    <Compile Include="QueryEntity\OrderDetailQuery.cs" />
+    <Compile Include="QueryEntity\OrderQuery.cs" />
+    <Compile Include="QueryEntity\OrderStateQuery.cs" />
+    <Compile Include="QueryEntity\SystemUserQuery.cs" />
     <Compile Include="SystemUser.cs">
       <DependentUpon>EFModel.tt</DependentUpon>
     </Compile>
@@ -117,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WrightWayRestaurant.Framework\WrightWayRestaurant.Framework.csproj">
+      <Project>{B08733CC-2DF5-40F0-BAC3-78312C741AA5}</Project>
+      <Name>WrightWayRestaurant.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

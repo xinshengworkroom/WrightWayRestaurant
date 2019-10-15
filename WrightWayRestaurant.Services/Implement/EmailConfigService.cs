@@ -1,13 +1,24 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using WrightWayRestaurant.Model;
+using WrightWayRestaurant.Model.QueryEntity;
 using WrightWayRestaurant.Services.Interface;
 
 namespace WrightWayRestaurant.Services.Implement
 {
     public class EmailConfigService : WrightWayRestaurantEntities, IEmailConfigService
     {
-      
+        public EmailConfig FirstOrDefault(EmailConfigQuery query)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<EmailConfig> Get(EmailConfigQuery query)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int Add(EmailConfig entity)
         { 
             this.EmailConfig.Add(entity);
@@ -18,26 +29,28 @@ namespace WrightWayRestaurant.Services.Implement
         public int Update(EmailConfig entity)
         {
             int result = 0;
-            var config = this.EmailConfig.FirstOrDefault(e => e.ConfigId == entity.ConfigId);
-            if (config != null)
+            var instance = this.EmailConfig.FirstOrDefault(e => e.ConfigId == entity.ConfigId);
+            if (instance != null)
             {
-                config = entity;
-                this.Entry<EmailConfig>(config).State = EntityState.Modified;
+                instance = entity;
+                this.Entry<EmailConfig>(instance).State = EntityState.Modified;
                 result = this.SaveChanges();
             }
             return result;
         }
 
-        public int Delete(int configId)
+        public int Delete(int entityId)
         {
             int result = 0;
-            var config = this.EmailConfig.FirstOrDefault(e => e.ConfigId == configId);
-            if (config != null)
+            var instance = this.EmailConfig.FirstOrDefault(e => e.ConfigId == entityId);
+            if (instance != null)
             {                
-                this.Entry<EmailConfig>(config).State = EntityState.Deleted;
+                this.Entry<EmailConfig>(instance).State = EntityState.Deleted;
                 result = this.SaveChanges();
             }
             return result;
         }
+
+
     }
 }

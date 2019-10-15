@@ -1,13 +1,18 @@
-﻿using WrightWayRestaurant.Model;
+﻿using System.Collections.Generic;
+using WrightWayRestaurant.Model;
+using WrightWayRestaurant.Model.QueryEntity;
 
 namespace WrightWayRestaurant.Services.Interface
 {
-    interface IEmailConfigService
+    public interface IEmailConfigService
     {
+        EmailConfig FirstOrDefault(EmailConfigQuery query);
+        List<EmailConfig> Get(EmailConfigQuery query);
+
         int Add(EmailConfig entity);
 
         int Update(EmailConfig entity);
 
-        int Delete(int configId);
+        int Delete(int entityId);
     }
 }

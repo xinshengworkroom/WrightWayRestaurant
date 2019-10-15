@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using WrightWayRestaurant.Model;
+using WrightWayRestaurant.Model.QueryEntity;
 
 namespace WrightWayRestaurant.Services.Interface
 {
-    interface IOrderStateService
+    public interface IOrderStateService
     {
+        OrderState FirstOrDefault(OrderStateQuery query);
+
+        List<OrderState> Get(OrderStateQuery query);
+
+        int Add(OrderState entity);
+
+        int Update(OrderState entity);
+     
+        int Delete(int entityId);
     }
 }
