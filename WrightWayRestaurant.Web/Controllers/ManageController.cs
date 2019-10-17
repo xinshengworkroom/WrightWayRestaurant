@@ -12,9 +12,6 @@ namespace WrightWayRestaurant.Web.Controllers
             return View();
         }
 
-        public ActionResult LeftMenu()
-        {
-            return PartialView();
-        }
+  
     }
 }

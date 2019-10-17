@@ -1,0 +1,65 @@
+﻿<div class="modal fade" id="foodDetail" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Food Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form class="form-horizontal" id="form_food_detail">
+                        <div class="form-group ">
+                            <div class="col-xs-8 ">
+                                @Html.Hidden("FoodId", "")
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="FoodName" class="col-xs-3 control-label">Food Name</label>
+                            <div class="col-xs-8 ">
+                                <input type="text" class="form-control input-sm duiqi" id="FoodName" name="FoodName" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TypeId" class="col-xs-3 control-label">TypeId</label>
+                            <div class="col-xs-8 ">
+                                <select name="TypeId" class="form-control input-sm duiqi"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Price" class="col-xs-3 control-label">Price</label>
+                            <div class="col-xs-8">
+                                <input type="number" class="form-control input-sm duiqi" id="Price" name="Price" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Stock" class="col-xs-3 control-label">Stock</label>
+                            <div class="col-xs-8">
+                                <input type="number" class="form-control input-sm duiqi" id="Stock" name="Stock" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Foodimg" class="col-xs-3 control-label">Foodimg</label>
+                            <div class="col-xs-8">
+                                <img style="width:100px;height:100px;"/>
+                                <input type="file" class="input-sm duiqi " id="Foodimg" name="Foodimg" placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="FoodState" class="col-xs-3 control-label">Food State</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control input-sm duiqi" id="FoodState" name="FoodState" placeholder="">
+                            </div>
+                        </div>                     
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-xs btn-white" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-xs btn-xs btn-green" id="btnSave">Save</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

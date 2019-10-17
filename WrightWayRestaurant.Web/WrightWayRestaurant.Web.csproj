@@ -137,6 +137,7 @@
     <Compile Include="Attribute\WebAuthorizeAttribute.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmailConfigController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -194,6 +195,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
+    <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\images\Thumbs.db" />
@@ -221,11 +223,11 @@
     <Content Include="Content\fonts\lato\lato-regular.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.nouislider.js" />
     <Content Include="Scripts\jquery.nouislider.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -234,7 +236,20 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\layer\layer.js" />
+    <Content Include="Scripts\layer\layer.min.js" />
+    <Content Include="Scripts\layer\skin\default\textbg.png" />
+    <Content Include="Scripts\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Scripts\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Scripts\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Scripts\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Scripts\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Scripts\layer\skin\default\xubox_title0.png" />
+    <Content Include="Scripts\layer\skin\layer.css" />
+    <Content Include="Scripts\layer\skin\layer.ext.css" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\template.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -253,7 +268,7 @@
     <Content Include="Views\SystemUser\Login.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
-    <Content Include="Views\Manage\LeftMenu.cshtml" />
+    <Content Include="Views\Shared\_ManageLeftMenu.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\EmailConfig\Index.cshtml" />
     <Content Include="Views\SystemUser\Index.cshtml" />
@@ -264,6 +279,9 @@
     <Content Include="Views\Information\Location.cshtml" />
     <Content Include="Views\Information\Contact.cshtml" />
     <Content Include="Views\Information\OurTeam.cshtml" />
+    <Content Include="Views\Food\Index.cshtml" />
+    <Content Include="Views\Food\Detail.cshtml" />
+    <Content Include="Views\Food\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

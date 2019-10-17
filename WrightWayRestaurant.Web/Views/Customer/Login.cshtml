@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Customer Login";
 }
-
 <div class="form-bg">
     <div class="container ">
         <div class="row">
@@ -28,9 +27,11 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <input type="submit" class="btn btn-primary btn-login" value="Login" />
                         </div>
-                        @*<div class="col-sm-offset-2 col-sm-10">
-                                <a href="javascript:forgotPassword(this);">Forget password</a>
-                            </div>*@
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <a href="javascript:forgotPassword(this);">Forget password</a>
+
+                            <a href="javascript:forgotPassword(this);">Forget password</a>
+                        </div>
                     </div>
                 }
 
@@ -39,58 +40,58 @@
     </div>
 </div>
 @section styles{
-    <style>
+    <style type="text/css">
         .form-horizontal {
             background-color: #fff;
             font-family: 'Arimo', sans-serif;
             text-align: center;
             padding: 50px 30px 50px;
-            box-shadow: 12px 12px 0 0 rgba(0,0,0,0.3);
+            /*box-shadow: 12px 12px 0 0 rgba(0,0,0,0.3);*/
         }
 
-            .form-horizontal .heading {
-                color: #555;
-                font-size: 30px;
-                font-weight: 600;
-                letter-spacing: 1px;
-                text-transform: capitalize;
-                margin: 0 0 50px 0;
-            }
+        .form-horizontal .heading {
+            color: #555;
+            font-size: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+            margin: 0 0 50px 0;
+        }
 
-            .form-horizontal .form-group {
-                margin: 0 auto 30px;
-                position: relative;
-            }
+        .form-horizontal .form-group {
+            margin: 0 auto 30px;
+            position: relative;
+        }
 
-                .form-horizontal .form-group:nth-last-child(2) {
-                    margin-bottom: 20px;
-                }
+        .form-horizontal .form-group:nth-last-child(2) {
+            margin-bottom: 20px;
+        }
 
-                .form-horizontal .form-group:last-child {
-                    margin: 0;
-                }
+        .form-horizontal .form-group:last-child {
+            margin: 0;
+        }
 
-                .form-horizontal .form-group > i {
-                    color: #999;
-                    transform: translateY(-50%);
-                    position: absolute;
-                    left: 5px;
-                    top: 50%;
-                }
+        .form-horizontal .form-group > i {
+            color: #999;
+            transform: translateY(-50%);
+            position: absolute;
+            left: 5px;
+            top: 50%;
+        }
 
-            .form-horizontal .form-control {
-                color: #7AB6B6;
-                background-color: #fff;
-                font-size: 17px;
-                letter-spacing: 1px;
-                height: 40px;
-                padding: 5px 10px 2px 25px;
-                box-shadow: 0 0 0 0 transparent;
-                border: none;
-                border-bottom: 1px solid rgba(0,0,0,0.1);
-                border-radius: 0;
-                display: inline-block;
-            }
+        .form-horizontal .form-control {
+            color: #7AB6B6;
+            background-color: #fff;
+            font-size: 17px;
+            letter-spacing: 1px;
+            height: 40px;
+            padding: 5px 10px 2px 25px;
+            box-shadow: 0 0 0 0 transparent;
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-radius: 0;
+            display: inline-block;
+        }
 
         .form-control::placeholder {
             color: rgba(0,0,0,0.2);
@@ -119,38 +120,38 @@
             transition: all 0.3s ease;
         }
 
-            .form-horizontal .btn:focus,
-            .form-horizontal .btn:hover {
-                color: #fff;
-                background-color: #7AB6B6;
-            }
+        .form-horizontal .btn:focus,
+        .form-horizontal .btn:hover {
+            color: #fff;
+            background-color: #7AB6B6;
+        }
 
-            .form-horizontal .btn:before,
-            .form-horizontal .btn:after {
-                content: '';
-                background-color: #7AB6B6;
-                height: 50%;
-                width: 2px;
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                z-index: 1;
-                transition: all 0.3s;
-            }
+        .form-horizontal .btn:before,
+        .form-horizontal .btn:after {
+            content: '';
+            background-color: #7AB6B6;
+            height: 50%;
+            width: 2px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            transition: all 0.3s;
+        }
 
-            .form-horizontal .btn:after {
-                bottom: auto;
-                top: 0;
-                left: auto;
-                right: 0;
-            }
+        .form-horizontal .btn:after {
+            bottom: auto;
+            top: 0;
+            left: auto;
+            right: 0;
+        }
 
-            .form-horizontal .btn:hover:before,
-            .form-horizontal .btn:hover:after {
-                height: 100%;
-                width: 50%;
-                opacity: 0;
-            }
+        .form-horizontal .btn:hover:before,
+        .form-horizontal .btn:hover:after {
+            height: 100%;
+            width: 50%;
+            opacity: 0;
+        }
 
         .form-horizontal .create_account {
             color: #D6BC8B;
@@ -159,17 +160,15 @@
             display: inline-block;
         }
 
-            .form-horizontal .create_account:hover {
-                color: #7AB6B6;
-                text-decoration: none;
-            }
+        .form-horizontal .create_account:hover {
+            color: #7AB6B6;
+            text-decoration: none;
+        }
     </style>
 }
 
 @section scripts{
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
     <script type="text/javascript">
-
         function onLoginBegin(e) {
             $("span[data-valmsg-for]").text("");
             if ($.trim($('#AccountName').val()) == '') {
@@ -177,8 +176,6 @@
                 $('#AccountName').focus();
                 return false;
             }
-
-
             if ($.trim($('#Password').val()) == '') {
                 $("span[data-valmsg-for='Password']").text("input password");
                 $('#Password').focus();
@@ -215,9 +212,6 @@
                 alert("Logon error");
             }
         }
-
-
-
     </script>
 }
 

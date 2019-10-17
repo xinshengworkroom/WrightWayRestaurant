@@ -3,8 +3,6 @@
     ViewBag.Title = "Manager Login";
     Layout = null;
 }
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
 <head>
@@ -14,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Manager Login</title>
     @*@Styles.Render("~/Content/css")*@
-    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css/bootstrap.min.css")
     <style type="text/css">
         body {
             background: url(../images/login_bg_0.jpg) #f8f6e9 0 0 no-repeat;
@@ -78,36 +76,36 @@
         }
     </style>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+
 </head>
 <body>
     <div class="signin">
         <div class="signin-head">
-            @*<img src="user.png" alt="" class="img-circle" />*@
-            <h1><span>Login</span></h1>
-        </div>
-        @using (Ajax.BeginForm("Login", "SystemUser", null, new AjaxOptions { OnBegin = "onLoginBegin", OnFailure = "onLoginFailure", OnComplete = "onLoginComplete", HttpMethod = "Post" }, new { @class = "form-signin", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.UserName, new { @placeholder = "input user name",@class = "form-control" })
-                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger text-error", })
-            </div>
-            <div class="form-group">
-                @Html.PasswordFor(m => m.Password, new { @placeholder = "input password", @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-error" })
-            </div>
-            <div class="form-group">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger text-error" })
-                <input type="submit" value="Login" class="btn btn-lg btn-warning btn-block login-btn" />
-            </div>
-        }
+@*<img src="user.png" alt="" class="img-circle" />*@
+    <h1><span>Login</span></h1>
     </div>
-
+    @using (Ajax.BeginForm("Login", "SystemUser", null, new AjaxOptions { OnBegin = "onLoginBegin", OnFailure = "onLoginFailure", OnComplete = "onLoginComplete", HttpMethod = "Post" }, new { @class = "form-signin", role = "form" }))
+            {
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.UserName, new { @placeholder = "input user name", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger text-error", })
+    </div>
+    <div class="form-group">
+        @Html.PasswordFor(m => m.Password, new { @placeholder = "input password", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-error" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger text-error" })
+        <input type="submit" value="Login" class="btn btn-lg btn-warning btn-block login-btn" />
+    </div>
+            }
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
     <script type="text/javascript">
-
         function onLoginBegin(e) {
             $("span[data-valmsg-for]").text("");
             if ($.trim($('#UserName').val()) == '') {
@@ -115,8 +113,6 @@
                 $('#UserName').focus();
                 return false;
             }
-
-
             if ($.trim($('#Password').val()) == '') {
                 $("span[data-valmsg-for='Password']").text("input password");
                 $('#Password').focus();
@@ -157,5 +153,5 @@
 
 
     </script>
-</body>
-</html>
+    </body>
+</head></html>

@@ -22,9 +22,14 @@ namespace WrightWayRestaurant.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/layer").Include(
+                     "~/Scripts/layer/layer.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",                   
-                      "~/Content/css/site.css"));
+                      "~/Content/css/site.css",
+                      "~/Scripts/layer/skin/layer.css"));
+
         }
     }
 }

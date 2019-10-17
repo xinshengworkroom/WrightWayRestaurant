@@ -1,0 +1,59 @@
+﻿<div role="tabpanel" class="tab-pane active" id="char">
+    <div class="check-div">
+        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#foodDetail">Add Food</button>
+    </div>
+    <div class="data-div">
+        <table class="table apply-table table-hover" style="margin-bottom:0;">
+            <thead class="row tableHeader">
+                <tr>
+                    <th class="col-xs-1 ">FoodId</th>
+                    <th class="col-xs-1 ">FoodName</th>
+                    <th class="col-xs-1 ">TypeId</th>
+                    <th class="col-xs-1 ">Price</th>
+                    <th class="col-xs-1 ">Stock</th>
+                    <th class="col-xs-1 ">Foodimg</th>
+                    <th class="col-xs-1 ">CreateTime</th>
+                    <th class="col-xs-1 ">UserId</th>
+                    <th class="col-xs-2 ">Operate</th>
+                </tr>
+            </thead>
+            <tbody id="foodList">
+                <tr>
+                    <td class="col-xs-1 ">FoodId</td>
+                    <td class="col-xs-1 ">FoodName</td>
+                    <td class="col-xs-1 ">TypeId</td>
+                    <td class="col-xs-1 ">Price</td>
+                    <td class="col-xs-1 ">Stock</td>
+                    <td class="col-xs-1 ">Foodimg</td>
+                    <td class="col-xs-1 ">CreateTime</td>
+                    <td class="col-xs-1 ">UserId</td>
+                    <td class="col-xs-2 ">
+                        <button class="btn btn-success btn-xs" data-toggle="modal" onclick="javascript:updateItem('1');">Modify</button>
+                        <button class="btn btn-danger btn-xs btnDelete" data-toggle="modal" onclick="javascript:deleteItem('1');">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
+
+<script id="foodListTemplate" type="text/html">
+    {{each list as value}}
+    <tr>
+    <tr>
+        <td class="col-xs-1">{{value.FoodId}}</td>
+        <td class="col-xs-1">{{value.FoodName}}</td>
+        <td class="col-xs-1">{{value.TypeId}}</td>
+        <td class="col-xs-1">{{value.Price}}</td>
+        <td class="col-xs-1">{{value.Stock}}</td>
+        <td class="col-xs-1">{{value.Foodimg}}</td>
+        <td class="col-xs-1">{{value.CreateTime}}</td>
+        <td class="col-xs-1">{{value.UserId}}</td>
+        <td class="col-xs-2">
+            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#foodDetail">Modify</button>
+            <button class="btn btn-danger btn-xs btnDelete" data-toggle="modal" onclick="javascript:deleteItem('{{value.FoodId}}');">Delete</button>
+        </td>
+    </tr>
+    </tr>
+    {{/each}}
+</script>

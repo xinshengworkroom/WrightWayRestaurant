@@ -1,34 +1,35 @@
 ﻿<!doctype html>
 <html lang="ch">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>Bootstrap左右结构响应式后台管理模板</title>
+    <title>Manage</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/common.css")
+    @Styles.Render("~/Content/css/slide.css")
+    @Styles.Render("~/Content/css/bootstrap.min.css")
+    @Styles.Render("~/Content/css/flat-ui.min.css")
+    @Styles.Render("~/Content/css/jquery.nouislider.css")
+    @RenderSection("styles", required: false)
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
-
-    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/Content/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/slide.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/flat-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/jquery.nouislider.css">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layer")
+    @Scripts.Render("~/Scripts/jquery.nouislider.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/Scripts/ajaxfileupload.js")
+    @Scripts.Render("~/Scripts/template.js")
+    @Scripts.Render("~/Scripts/common.js")
+    @RenderSection("scripts", required: false)
 </head>
 
 <body>
     <div id="wrap">
-        <!-- 左侧菜单栏目块 -->
-        <div class="leftMeun" id="leftMeun">
-        
-
-            @{Html.RenderAction("LeftMenu", "Manage", new { area = "" });}
+        <div class="leftMeun" id="leftMeun" >
+            @Html.Partial("_ManageLeftMenu")
         </div>
-        <!-- 右侧具体内容栏目 -->
         <div id="rightContent">
             <a class="toggle-btn" id="nimei">
                 <i class="glyphicon glyphicon-align-justify"></i>
@@ -38,7 +39,7 @@
                 @RenderBody()
             </div>
         </div>
-    </div>   
-    <script src="~/Scripts/jquery.nouislider.js"></script> 
+    </div>
+
 </body>
 </html>
