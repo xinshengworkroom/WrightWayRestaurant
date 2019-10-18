@@ -138,6 +138,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmailConfigController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
+    <Compile Include="Controllers\FoodTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -148,6 +149,7 @@
     </Compile>
     <Compile Include="ManageContext.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
+    <Compile Include="Models\OrderViewModels.cs" />
     <Compile Include="Models\SystemUserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebContext.cs" />
@@ -159,10 +161,12 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\common.css" />
     <Content Include="Content\css\commonCopy.css" />
+    <Content Include="Content\css\customer-form.css" />
     <Content Include="Content\css\flat-ui.min.css" />
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\jquery.nouislider.css" />
     <Content Include="Content\css\jquery.nouislider.min.css" />
+    <Content Include="Content\css\shopping-card-style.css" />
     <Content Include="Content\css\slide.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\lato\lato-black.svg" />
@@ -173,6 +177,7 @@
     <Content Include="Content\fonts\lato\lato-regular.svg" />
     <Content Include="Content\images\captchaCode.jpg" />
     <Content Include="Content\images\circle.png" />
+    <Content Include="Content\images\shop-card.png" />
     <Content Include="Content\images\icon_card.png" />
     <Content Include="Content\images\icon_card_grey.png" />
     <Content Include="Content\images\icon_change.png" />
@@ -223,6 +228,7 @@
     <Content Include="Content\fonts\lato\lato-regular.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\fileUpload.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
@@ -249,6 +255,7 @@
     <Content Include="Scripts\layer\skin\layer.css" />
     <Content Include="Scripts\layer\skin\layer.ext.css" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\shopping-cart-script.js" />
     <Content Include="Scripts\template.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -282,6 +289,15 @@
     <Content Include="Views\Food\Index.cshtml" />
     <Content Include="Views\Food\Detail.cshtml" />
     <Content Include="Views\Food\List.cshtml" />
+    <Content Include="Views\FoodType\Index.cshtml" />
+    <Content Include="Views\FoodType\Detail.cshtml" />
+    <Content Include="Views\FoodType\List.cshtml" />
+    <Content Include="Views\Home\Rotationchart.cshtml" />
+    <Content Include="Views\Home\CartTable.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

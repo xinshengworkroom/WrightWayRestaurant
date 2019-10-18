@@ -26,7 +26,6 @@ namespace WrightWayRestaurant.Web.Controllers
             return View();
         }
 
-
         [ManageAuthorize]
         public ActionResult Get()
         {
@@ -52,8 +51,8 @@ namespace WrightWayRestaurant.Web.Controllers
         public ActionResult Add(Food entity)
         {
             var result = new ResultData<object>(ResultStatusEnums.Fail) { Message = "" };
-            var file = System.Web.HttpContext.Current.Request.Files["Foodimg"];
-            if (file != null)
+            var file = System.Web.HttpContext.Current.Request.Files["file_Foodimg"];
+            if (file != null && !string.IsNullOrEmpty(file.FileName))
             {
                 string savePath = Server.MapPath("~/Upload/Food\\");
                 if (!Directory.Exists(savePath))
@@ -81,8 +80,8 @@ namespace WrightWayRestaurant.Web.Controllers
         public ActionResult Update(Food entity)
         {
             var result = new ResultData<object>(ResultStatusEnums.Fail) { Message = "" };
-            var file = System.Web.HttpContext.Current.Request.Files["Foodimg"];
-            if (file != null)
+            var file = System.Web.HttpContext.Current.Request.Files["file_Foodimg"];
+            if (file != null && !string.IsNullOrEmpty(file.FileName))
             {
                 string savePath = Server.MapPath("~/Upload/Food\\");
                 if (!Directory.Exists(savePath))
@@ -93,7 +92,8 @@ namespace WrightWayRestaurant.Web.Controllers
                 file.SaveAs(saveFile);
                 entity.Foodimg = "Upload/Food/" + file.FileName;
             }
-      
+            entity.UserId = ManageContext.Current.SessionUser.UserId;
+            entity.CreateTime = DateTime.Now;
             int rows = FoodService.Update(entity);
             if (rows > 0)
             {

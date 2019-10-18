@@ -1,0 +1,55 @@
+﻿<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- 指示器 -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播图片及说明文字 -->
+    <div class="carousel-inner" role="listbox">
+        @{
+            var data = Model as List<WrightWayRestaurant.Model.Food>;
+            if (data != null)
+            {
+                var count = data.Count > 3 ? 3 : data.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    string active = i == 0 ? "active" : "";
+                    <div class="item @active">
+                        <a href="#" class="pc_imgBox" style="background-image: url('../@data[i].Foodimg')"></a>
+                    </div>
+                }
+            }
+        }
+    </div>
+    <!-- 控制按钮：左右切换 -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+
+
+
+<div class="">
+    @foreach (var food in data)
+    {
+        <div class="food">
+            <img class="foodimg" src="../@food.Foodimg"><br/>
+            <span>Food Name: @food.FoodName</span><br />
+            <span>Price: ￥@food.Price</span><br />
+            <input type="button" class="btn btn-danger" value="add to cart" onclick="javascript:addToShoppingCard('@food.FoodId')"/>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+

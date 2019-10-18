@@ -172,8 +172,11 @@ jQuery.extend({
         } catch (e) {
             jQuery.handleError(s, xml, null, e);
         }
-
-        jQuery('#' + frameId).load(uploadCallback);
+        try{
+            jQuery('#' + frameId).load(uploadCallback);
+        }catch(err){
+            console.log(err);
+        }
         return { abort: function () { } };
 
     },

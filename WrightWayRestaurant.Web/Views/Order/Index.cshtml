@@ -4,5 +4,107 @@
     Layout = "~/Views/Shared/_ManageLayout.cshtml";
 }
 
-<h2>Order Index</h2>
+@Html.Partial("List")
+
+@Html.Partial("Detail")
+
+@section scripts{
+    <script type="text/javascript">
+            var _pageSize = 10;
+            $(function () {
+                $("#btnSave").click(function () {
+                    var params = getFormData("form_order_detail");
+                    if (params == false) return false;                   
+                    var id = $("input[type='hidden'][id='OrderId']").val();
+                    var url = "@Url.Action("Add","Order")";
+                    if (id != "") {
+                        url = "@Url.Action("Update", "Order")";
+                    }
+                    ajaxPost(url, params,
+                        function (result) {
+                            alert("success", function () {
+                                //$('#foodDetailModal').modal("hide");
+                                loadList(1);
+                            });
+
+                        }, function (err) {
+                            $('#foodDetailModal').modal("hide");
+                            loadList(1);
+                        });
+                });                
+                loadList(1);
+            });
+   
+        function lookItem(itemId) {
+                if (itemId) {
+                    ajaxGet("@Url.Action("GetFirstOrDefault", "Order")",
+                        { orderId: itemId },
+                        function (result) {
+                            if (result) {                             
+                                if (result.Data == undefined) return;
+                                var data = {
+                                    list: result.Data.OrderDetail
+                                }
+                                $("#orderDetailList").html(template("orderDetailListTemplate", data));
+                                if (result.Data.TotalCount <= 0) {
+                                    $("#orderDetailList").html("<tr><td colspan='4' class='text-center'><span>no data</span></td></tr>");
+                                }
+                                $('#orderDetailModal').modal("show");
+                              
+                            }
+                        },
+                        function () {
+                            layer.msg('fail', 1);
+                        });
+                }
+            }
+
+            function deleteItem(itemId) {
+                if (itemId)
+                    layer.confirm("Are you sure you want to delete ?",
+                        function (index) {
+                            ajaxPost("@Url.Action("Delete", "Food")",
+                                { foodId: itemId },
+                                function (result) {
+                                    layer.msg('success', 1, {}, function () {
+                                        loadList(1);
+                                    });
+                                    
+                                },
+                                function () {
+                                    layer.msg('fail', 1);
+                                });
+                        },
+                        "Tips",
+                        function (index) {
+                            layer.close(index);
+                        });
+            }
+
+
+            function loadList(pageIndex, pageSize) {
+                var param = {
+                    PageIndex: pageIndex,
+                    PageSize: pageSize == undefined ? _pageSize : pageSize
+                };
+                ajaxGet("@Url.Action("Get", "Order")",
+                param,
+                function (result) {
+                   // debugger;
+                    if (result.Data == undefined) return;
+                    var data = {
+                        list: result.Data
+                    }                
+                    $("#orderList").html(template("orderListTemplate", data));
+                    if (result.Data.TotalCount <= 0) {
+                        $("#orderList").html("<tr><td colspan='6' class='text-center'><span>no data</span></td></tr>");
+                    }
+                  
+                },
+                function () {
+                    layer.msg('fail', 1);
+                });
+            }
+    </script>
+}
 

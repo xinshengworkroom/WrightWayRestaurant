@@ -11,12 +11,39 @@ namespace WrightWayRestaurant.Services.Implement
     {
         public Food FirstOrDefault(FoodQuery query)
         {
-            throw new System.NotImplementedException();
+            Food result = null;
+            List<Food> list = Get(query);
+            if (list != null)
+            {
+                result = list.FirstOrDefault();
+            }
+            return result;
         }
 
         public List<Food> Get(FoodQuery query)
         {
-            throw new System.NotImplementedException();
+            List<Food> result = null;
+            IEnumerable<Food> enumerable = this.Food.AsEnumerable();
+            if (query.FoodId != null)
+            {
+                enumerable = enumerable.Where(o => o.FoodId == query.FoodId.Value);
+            }
+
+            if (!string.IsNullOrEmpty(query.FoodName))
+            {
+                enumerable = enumerable.Where(o => o.FoodName == query.FoodName);
+            }
+
+            if (query.TypeId != null)
+            {
+                enumerable = enumerable.Where(o => o.TypeId == query.TypeId);
+            }
+
+            if (enumerable != null)
+            {
+                result = enumerable.ToList();
+            }
+            return result;
         }
 
         public int Add(Food entity)
@@ -29,23 +56,23 @@ namespace WrightWayRestaurant.Services.Implement
         public int Update(Food entity)
         {
             int result = 0;
-            var instance = this.Food.FirstOrDefault(f=>f.FoodId == entity.FoodId);
-            if (instance != null)
-            {
-                instance = entity;
-                this.Entry<Food>(instance).State = EntityState.Modified;
-                result = this.SaveChanges();
-            }
+            this.Set<Food>().Attach(entity);
+            this.Entry(entity).State = EntityState.Modified;
+            this.Entry(entity).Property("UserId").IsModified = false;          
+            this.Entry(entity).Property("CreateTime").IsModified = false;
+            if(string.IsNullOrEmpty(entity.Foodimg))
+                this.Entry(entity).Property("Foodimg").IsModified = false;
+            result = this.SaveChanges();
             return result;
         }
 
         public int Delete(int entityId)
         {
             int result = 0;
-            var instance = this.Food.FirstOrDefault(f => f.FoodId == entityId);
-            if (instance != null)
+            var entity = this.Set<Food>().Find(entityId);
+            if (entity != null)
             {
-                this.Entry<Food>(instance).State = EntityState.Deleted;
+                this.Set<Food>().Remove(entity);
                 result = this.SaveChanges();
             }
             return result;

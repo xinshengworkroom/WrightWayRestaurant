@@ -1,4 +1,4 @@
-﻿<div class="modal fade" id="foodDetail" role="dialog" aria-labelledby="gridSystemModalLabel">
+﻿<div class="modal fade" id="foodDetailModal" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,39 +16,39 @@
                         <div class="form-group ">
                             <label for="FoodName" class="col-xs-3 control-label">Food Name</label>
                             <div class="col-xs-8 ">
-                                <input type="text" class="form-control input-sm duiqi" id="FoodName" name="FoodName" placeholder="">
+                                <input type="text" class="form-control input-sm duiqi" id="FoodName" name="FoodName" data-required="true" data-required-message="Food Name must input"  placeholder="Food Name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="TypeId" class="col-xs-3 control-label">TypeId</label>
+                            <label for="TypeId" class="col-xs-3 control-label">Food Type</label>
                             <div class="col-xs-8 ">
-                                <select name="TypeId" class="form-control input-sm duiqi"></select>
+                                <select id="TypeId" name="TypeId" class="form-control input-sm duiqi" data-required="true" data-required-message="Food Type must input"></select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Price" class="col-xs-3 control-label">Price</label>
                             <div class="col-xs-8">
-                                <input type="number" class="form-control input-sm duiqi" id="Price" name="Price" placeholder="">
+                                <input type="number" class="form-control input-sm duiqi" id="Price" name="Price" data-required="true" data-required-message="Food Price must input" placeholder="Food Price">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Stock" class="col-xs-3 control-label">Stock</label>
                             <div class="col-xs-8">
-                                <input type="number" class="form-control input-sm duiqi" id="Stock" name="Stock" placeholder="">
+                                <input type="number" class="form-control input-sm duiqi" id="Stock" name="Stock" data-required="true" data-required-message="Food Stock must input" placeholder="Stock">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Foodimg" class="col-xs-3 control-label">Foodimg</label>
                             <div class="col-xs-8">
-                                <img style="width:100px;height:100px;"/>
-                                <input type="file" class="input-sm duiqi " id="Foodimg" name="Foodimg" placeholder="">
+                                <img style="width:100px;height:100px;" id="Foodimg"/>
+                                <input type="file" class="input-sm duiqi " id="file_Foodimg" name="file_Foodimg" placeholder="">
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="FoodState" class="col-xs-3 control-label">Food State</label>
                             <div class="col-xs-8">
-                                <input type="text" class="form-control input-sm duiqi" id="FoodState" name="FoodState" placeholder="">
+                                <input type="text" class="form-control input-sm duiqi" id="FoodState" name="FoodState" data-required="true" data-required-message="Food State must input" placeholder="">
                             </div>
                         </div>                     
                     </form>

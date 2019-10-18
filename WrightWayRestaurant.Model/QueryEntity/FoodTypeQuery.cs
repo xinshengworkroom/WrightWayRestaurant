@@ -9,5 +9,6 @@ namespace WrightWayRestaurant.Model.QueryEntity
     public class FoodTypeQuery
     {
         public int? TypeId { get; set; }
+        public string TypeName { get; set; }
     }
 }

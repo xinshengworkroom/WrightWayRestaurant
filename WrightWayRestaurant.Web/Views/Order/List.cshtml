@@ -1,0 +1,40 @@
+﻿<div role="tabpanel" class="tab-pane active" id="char">
+    <div class="check-div">
+        @*<button class="btn btn-yellow btn-xs" data-toggle="modal" onclick="javascript:addItem();">Add Food</button>*@
+    </div>
+    <div class="data-div">
+        <table class="table apply-table table-hover" style="margin-bottom:0;">
+            <thead class="row tableHeader">
+                <tr>
+                    <th class="col-xs-1 ">OrderId</th>
+                    <th class="col-xs-1 ">Customer</th>
+                    <th class="col-xs-1 ">Email</th>
+                    <th class="col-xs-1 ">PhoneNo</th>
+                    <th class="col-xs-1 ">ReserveTime</th>
+                    <th class="col-xs-1 ">CreateTime</th>
+                    <th class="col-xs-1 ">OrderState</th>
+                    <th class="col-xs-2 ">Operate</th>
+                </tr>
+            </thead>
+            <tbody id="orderList"></tbody>
+        </table>
+    </div>
+</div>
+
+<script id="orderListTemplate" type="text/html">
+    {{each list as value}}    
+    <tr>
+        <td class="col-xs-1">{{value.OrderId}}</td>
+        <td class="col-xs-1">{{value.Customer.CustomerName}}</td>
+        <td class="col-xs-1">{{value.Customer.Email}}</td>
+        <td class="col-xs-1">{{value.Customer.PhoneNo}}</td>
+        <td class="col-xs-1">{{value.ReserveTime}}</td>
+        <td class="col-xs-1">{{value.CreateTime}}</td>
+        <td class="col-xs-1">{{value.OrderState}}</td>
+        <td class="col-xs-2">
+            <button class="btn btn-success btn-xs" data-toggle="modal" onclick="javascript:lookItem('{{value.OrderId}}');">Look</button>
+            <button class="btn btn-danger btn-xs btnDelete" data-toggle="modal" onclick="javascript:deleteItem('{{value.OrderId}}');">Delete</button>
+        </td>
+    </tr>   
+    {{/each}}
+</script>

@@ -2,4 +2,96 @@
     ViewBag.Title = "Home Page";
 }
 
-Home
+@Html.Action("Rotationchart", "Home")
+
+
+
+
+
+
+<div class="livechat-girl js-livechat-girl animated" id="lc-girl-block-cn_4">
+    <ul class="livechat-control">
+        <li class="livechat-control__element livechat-control__element_chat">
+            <a rel="external nofollow" href="@Url.Action("ShoppingCart","Home")" class="livechat-control__link js-start-chat" target="_blank">
+                <div class="js-girl-holder girl-holder">
+                    <img src="../Content/images/shop-card.png" style="width:50px;height:50px;" />
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div class="js-livechat-hint livechat-hint rd-notice rd-notice-tooltip rd-notice-type-success rd-notice-position-left single-line hide_hint" style="display: none;">
+        <div class="popover-content rd-notice-content js-invitation-greeting"></div>
+    </div>
+    <div class="animated-circles js-animated-circles">
+        <div class="circle c-1"></div>
+        <div class="circle c-2"></div>
+        <div class="circle c-3"></div>
+    </div>
+</div>
+
+@*@Html.Partial("CartTable")*@
+@*@Html.Partial("ShoppingCart")*@
+@section styles{
+    <style type="text/css">
+        .pc_imgBox {
+            display: block;
+            height: 400px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .carousel-indicators {
+            background: #ccc;
+        }
+
+        .carousel {
+            min-width: 1200px;
+        }
+
+        .food {
+            width: 300px;
+            height: 300px;
+            margin-left: 50px;
+            margin-top: 50px;
+            text-align:center;
+            float: left;
+        }
+       
+        .foodimg {
+            width: 230px;
+            height: 200px;
+            margin-left: 50px;
+            margin-top: 50px;
+            float: left;
+        }
+    </style>
+    @Styles.Render("~/Content/css/shopping-card-style.css")
+}
+
+@section scripts{
+    <script type="text/javascript">
+        function addToShoppingCard(foodid) {
+            ajaxPost("@Url.Action("AddToShoppingCard", "Home")",
+            { foodId: foodid },
+            function (result) {
+                if (result.Code == -200) {
+                    layer.msg('please login', 1, { type: 3 }, function () {
+                        window.location = "@Url.Action("Login", "Customer")";
+                    });
+
+                } else {
+                    layer.msg('success', 1, { type: 1 });
+                    //loadList(1);
+                }
+            },
+            function () {
+                layer.msg('fail', 1);
+            });
+        }
+
+
+
+    </script>    
+}

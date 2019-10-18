@@ -1,0 +1,356 @@
+﻿@charset "utf-8";
+.shopping-car-container {
+	padding: 50px 40px;
+}
+
+.shopping-car-container .car-headers-menu {
+	border-bottom: 1px solid #f5f5f5;
+	padding: 0 15px;
+}
+
+.shopping-car-container .panel-body {
+	padding: 15px 0;
+}
+
+#checkAll {
+	vertical-align: text-bottom;
+}
+
+.shopping-car-container .car-menu {
+	text-align: center;
+}
+/*
+ 商品区
+ * */
+
+.shopping-car-container .goods-content {
+	margin-top: 15px;
+}
+
+.shopping-car-container .goods-content .goods-item {
+	margin-top: 20px;
+}
+
+.shopping-car-container .goods-content .goods-item .car-goods-info {
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.shopping-car-container .goods-content .goods-item .goods-image-column img,
+.shopping-car-container .goods-content .goods-item .goods-image-column span {
+	display: block;
+	float: left;
+}
+
+.shopping-car-container .goods-content .goods-item .goods-image-column span {
+	width: calc(100% - 100px);
+	box-sizing: border-box;
+	text-indent: 2rem;
+	line-height: 25px;
+	padding: 10px;
+}
+
+.goods-price {
+	color: red;
+	font-weight: bolder;
+}
+
+.form-control {
+	text-align: center;
+}
+
+.single-total {
+	color: red;
+	font-weight: bold;
+}
+
+.goods-params {
+	color: darkgray;
+}
+
+.bottom-menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom-menu #checkAllBottom {
+	vertical-align: text-bottom;
+}
+
+#deleteMulty {
+	color: cornflowerblue;
+	cursor: pointer;
+	vertical-align: text-bottom;
+}
+
+.bottom-menu-include {
+	background: #e5e5e5;
+}
+
+#selectGoodsCount {
+	color: orangered;
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+#selectGoodsMoney {
+	color: orangered;
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.panel-default .submitData {
+	background: orangered;
+	font-size: 16px;
+	color: white;
+	cursor: pointer;
+	font-weight: bolder;
+	height: 58px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.panel-default .submitDis {
+	background: #B0B0B0;
+	cursor: no-drop;
+}
+
+.shopping-car-container .panel-default {
+	position: relative;
+}
+
+.livechat-girl {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    opacity: 0;
+    z-index: 700;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    cursor: pointer;
+    -webkit-transition: all 1s cubic-bezier(0.86,0,0.07,1);
+    transition: all 1s cubic-bezier(0.86,0,0.07,1)
+}
+
+.livechat-girl:focus {
+    outline: 0
+}
+
+.livechat-girl.animated {
+    opacity: 1;
+    transform: translateY(-40px);
+    -webkit-transform: translateY(-40px);
+    -ms-transform: translateY(-40px)
+}
+
+.livechat-girl .livechat-control {
+    border-radius: 50px 50px;
+    background-color: rgba(255,255,255,0.85);
+    box-shadow: 0 5px 10px 0 rgba(35,50,56,0.3);
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.livechat-girl .livechat-control__element {
+    cursor: pointer;
+    height: 100%;
+    vertical-align: top
+}
+
+.livechat-girl .livechat-control__element:hover .tm-icon {
+    transform: scale(1.25)
+}
+
+.livechat-girl .livechat-control__element_clicked .livechat-control__link .tm-icon {
+    transform: scale(1)
+}
+
+.livechat-girl .livechat-control__element_clicked .livechat-control__link .tm-icon.icon-speech-dots {
+    background-color: #06742e
+}
+
+.livechat-girl .livechat-control__element_clicked .livechat-control__link .tm-icon.icon-handset2 {
+    background-color: #0d47a1
+}
+
+.livechat-girl .livechat-control__element .tm-icon {
+    padding: 0;
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    -webkit-transition: all 300ms cubic-bezier(0.86,0,0.07,1);
+    transition: all 300ms cubic-bezier(0.86,0,0.07,1)
+}
+
+.livechat-girl .livechat-control__element .tm-icon:before {
+    line-height: 40px
+}
+
+.livechat-girl .livechat-control__element_chat {
+    display: inline-block;
+    line-height: normal;
+}
+
+.livechat-girl .livechat-control__element_chat:hover .tm-icon {
+    background-color: #1b9b4a
+}
+
+.livechat-girl .livechat-control__element_chat:after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom,#38dc79,#1ab744);
+    position: absolute;
+    left: 46px;
+    top: 1px;
+    z-index: 50
+}
+
+.livechat-girl .livechat-control__element_chat .tm-icon {
+    display: none;
+    margin-left: 20px;
+    background-color: #1ab744
+}
+
+.livechat-girl .livechat-control__element_callback {
+    display: none
+}
+
+.livechat-girl .livechat-control__element_callback .tm-icon {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    background-color: #2196f3
+}
+
+.livechat-girl .livechat-control__link {
+    display: inline-block
+}
+
+.livechat-girl .livechat-control .girl-holder {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+    z-index: 50
+}
+
+.livechat-girl .livechat-control .girl {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%
+}
+
+.livechat-girl .livechat-control .girl_smiling {
+    position: absolute
+}
+
+.livechat-girl .livechat-control .girl_hover {
+    opacity: 0
+}
+
+.livechat-girl .animated-circles {
+    position: absolute;
+    top: 0
+}
+
+.livechat-girl .animated-circles .circle {
+    background: rgba(26,183,68,0.25);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 49;
+    transform: scale(1);
+    -webkit-transform: scale(1)
+}
+
+.livechat-girl .animated-circles.animated .c-1 {
+    animation: 2000ms scaleToggleOne cubic-bezier(0.25,0.46,0.45,0.94) forwards
+}
+
+.livechat-girl .animated-circles.animated .c-2 {
+    animation: 2500ms scaleToggleTwo cubic-bezier(0.25,0.46,0.45,0.94) forwards
+}
+
+.livechat-girl .animated-circles.animated .c-3 {
+    animation: 3000ms scaleToggleThree cubic-bezier(0.25,0.46,0.45,0.94) forwards
+}
+
+.livechat-girl.animation-stopped .circle {
+    opacity: 0 !important
+}
+
+.livechat-girl .livechat-hint {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    margin-top: -20px;
+    opacity: 0;
+    z-index: 0;
+    -webkit-transition: all .3s cubic-bezier(0.86,0,0.07,1);
+    transition: all .3s cubic-bezier(0.86,0,0.07,1)
+}
+
+.livechat-girl .livechat-hint.show_hint {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
+    opacity: 1
+}
+
+.livechat-girl .livechat-hint.hide_hint {
+    opacity: 0;
+    -webkit-transform: translateX(0);
+    transform: translateX(0)
+}
+
+.livechat-girl .livechat-hint.rd-notice-tooltip {
+    max-width: 1296px !important
+}
+
+.livechat-girl .livechat-hint.rd-notice-tooltip .rd-notice-content {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.livechat-girl.with-callback .girl {
+    border: solid 1px #cfd8dc
+}
+
+.livechat-girl.with-callback .livechat-hint {
+    right: 180px
+}
+
+.livechat-girl.with-callback .livechat-control__element_chat a {
+    padding-right: 10px
+}
+
+.livechat-girl.with-callback .livechat-control__element_chat .tm-icon {
+    display: inline-block
+}
+
+.livechat-girl.with-callback .livechat-control__element_callback {
+    display: inline-block
+}
+
+.livechat-girl.with-callback .livechat-control__element_callback a {
+    padding-left: 10px
+}

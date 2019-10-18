@@ -11,12 +11,6 @@ window.alert = function (msg,callbackFn) {
     }
 }
 
-
-
-
-
-
-
 var loadingbar = false;
 function ajaxGet(url, data, successfn, errorfn, asyncC, dataType) {
     var token = $('[name=__RequestVerificationToken]');
@@ -34,7 +28,7 @@ function ajaxGet(url, data, successfn, errorfn, asyncC, dataType) {
         async: asyncC == undefined ? true : false,
         beforeSend: function (e) {
             if (layer)
-                loadingbar = layer.load("加载中...");
+                loadingbar = layer.load("loading...");
         },
         complete: function () {
             if (loadingbar)
@@ -69,7 +63,7 @@ function ajaxPost(url, data, successfn, errorfn, asyncC, dataType) {
         async: asyncC == undefined ? true : false,
         beforeSend: function (e) {
             if (layer)
-                loadingbar = layer.load("提交中...");
+                loadingbar = layer.load("loading...");
         },
         complete: function () {
             if (loadingbar)
@@ -104,10 +98,10 @@ function fileUpload(file, params,url,successfn, errorfn) {
         data: params,
         secureuri: false,
         fileElementId: files,
-        dataType: "json",
+        //dataType: "jsonp",
         beforeSend: function (e) {
             if (layer)
-                loadingbar = layer.load("提交中...");
+                loadingbar = layer.load("submiting...");
         },
         complete: function () {
             if (loadingbar)
@@ -153,16 +147,67 @@ function serializeForm(form) {
     return o;
 }
 
-function deserializeForm(form, data) {
-    jQuery.each(data, function (name, value) {
-        var $element = $(form).find("[id='" + name + "']") || $(form).find("[name='" + name + "']");
+function getFormData(formId) {
+    var $form = $("form[id='" + formId + "']");
+    var o = {};
+    var result = true;
+    $form.find("input,select").each(function (i, $this) {
+        $this = $(this);
+        var value = $this.val();
+        o[$this.attr("name")] = value;
+        var tag = $this.prop("tagName");        
+        switch (tag) {
+            case "INPUT":
+                var type = $this.attr("type");
+                switch ($this.attr("type").toLowerCase()) {
+                    case "text":
+                    case "number":
+                    case "hidden":
+                        if ($this.data("required") && (value == undefined || value == "")) {
+                            layer.msg($this.data("required-message"));
+                            $this.focus();
+                            result = false;
+                            return false;
+                        }
+                        break;
+                }
+                break;
+            case "TEXTAREA":
+            case "SELECT":
+                if ($this.data("required") && (value == undefined || value == "")) {
+                    layer.msg($this.data("required-message"));
+                    $this.focus();
+                    result = false;
+                    return false;
+                }
+                break;
+        }
+    });
+    if (!result) return false;   
+    return o;
+}
+
+function clearFormData(formId) {
+    var $form = $("form[id='" + formId + "']");
+ 
+    $form.find("input,select").each(function (i, $this) {
+        $this = $(this).val("");      
+    });
+}
+
+function deserializeForm(formId, data) {
+    var $form = $("form[id='" + formId + "']");
+    for (var name in data) {
+        var $element = $form.find("[id='" + name + "']") || $form.find("[name='" + name + "']");
         if ($element !== undefined && $element.length > 0) {
             var tag = $element.prop("tagName");
+            var value = data[name];
             switch (tag) {
                 case "INPUT":
                     var type = $element.attr("type");
                     switch ($element.attr("type").toLowerCase()) {
                         case "text":
+                        case "number":
                         case "hidden":
                             $element.val(value);
                             break;
@@ -180,7 +225,46 @@ function deserializeForm(form, data) {
                 case "SELECT":
                     $element.find("option[value = '" + value + "']").attr("selected", true);
                     break;
+                case "IMG":
+                    $element.attr("src", "../" + value);
+                    break;
             }
         }
+
+    }
+}
+
+function initSelect(url, data, selId, textFiled, valueFiled, defaultValue, errorFunc) {
+    ajaxGet(url, data, function (result) {
+        var $select = $("select[id='" + selId + "']");
+        $.each(result.Data, function (index, item) {
+            var option = document.createElement("option");
+            option.value = item[valueFiled];
+            option.innerHTML = item[textFiled];
+            if (defaultValue != undefined && defaultValue == item[valueFiled]) {
+                option.selected = "selected";
+            }
+            $select.append(option);
+        });
+    }, function () {
+        if (typeof errorFunc === 'function') {
+            errorFunc();
+        } 
     });
+}
+
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }

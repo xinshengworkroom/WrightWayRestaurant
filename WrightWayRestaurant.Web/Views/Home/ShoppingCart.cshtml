@@ -1,0 +1,191 @@
+﻿<div class="shopping-car-container">
+    <div class="car-headers-menu">
+        <div class="row">
+            <div class="col-md-1 car-menu">
+                <label><input type="checkbox" id="check-goods-all" /><span id="checkAll">All</span></label>
+            </div>
+            <div class="col-md-3 car-menu">information</div>
+            <div class="col-md-3 car-menu">food</div>
+            <div class="col-md-1 car-menu">price</div>
+            <div class="col-md-1 car-menu">number</div>
+            <div class="col-md-1 car-menu">money</div>
+            <div class="col-md-2 car-menu">operate</div>
+        </div>
+    </div>
+    <div class="goods-content">
+        @{
+            var data = Model as List<WrightWayRestaurant.Model.Food>;
+            if (data != null)
+            {
+                foreach (var food in data)
+                {
+                    <div class="goods-item">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-md-1 car-goods-info">
+                                    <label><input type="checkbox" class="goods-list-item" value="@food.FoodId"></label>
+                                </div>
+                                <div class="col-md-3 car-goods-info goods-image-column">
+                                    <img class="goods-image" src="../@food.Foodimg" style="width: 100px; height: 100px;">
+                                    <span id="goods-info">@food.FoodName</span>
+                                </div>
+                                <div class="col-md-3 car-goods-info goods-params">@food.FoodName</div>
+                                <div class="col-md-1 car-goods-info goods-price">
+                                    <span>￥</span>
+                                    <span class="single-price">@Math.Round(food.Price.Value,2)</span>
+                                </div>
+                                <div class="col-md-1 car-goods-info goods-counts">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default car-decrease">-</button>
+                                        </div>
+                                        <input type="number" data-for-foodid="@food.FoodId" style="width:50px;" class="form-control goods-count" value="@food.Stock" readonly />
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default car-add">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 car-goods-info goods-money-count">
+                                    <span>￥</span>
+                                    <span class="single-total">@Math.Round(food.Price.Value*food.Stock.Value, 2)</span>
+                                </div>
+                                <div class="col-md-2 car-goods-info goods-operate">
+                                    <button type="button" class="btn btn-danger item-delete">delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body bottom-menu-include">
+            <div class="col-md-1 check-all-bottom bottom-menu">
+                <label>
+                    <input type="checkbox" id="checked-all-bottom" />
+                    <span id="checkAllBottom">All</span>
+                </label>
+            </div>
+            <div class="col-md-1 bottom-menu">
+                <span id="deleteMulty">
+                    delete
+                </span>
+            </div>
+            <div class="col-md-6 bottom-menu">
+
+            </div>
+            <div class="col-md-2 bottom-menu">
+                <span>selected <span id="selectGoodsCount">0</span> </span>
+            </div>
+            <div class="col-md-1 bottom-menu">
+                <span>total:￥<span id="selectGoodsMoney">0.00</span></span>
+            </div>
+            <div class="col-md-1 bottom-menu submitData submitDis" onclick="javascript:submitOrder();">
+                submit order
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteItemTip" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Tips</h4>
+                </div>
+                <div class="modal-body">
+                    Confirm to delete this food ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary deleteSure">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal fade" tabindex="-1" role="dialog" id="selectItemTip" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Tips</h4>
+                </div>
+                <div class="modal-body">
+                    Please select the item to delete！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--批量删除商品-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteMultyTip" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Tips</h4>
+                </div>
+                <div class="modal-body">
+                    Confirm to delete this food ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary deleteMultySure">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    @Styles.Render("~/Content/css/shopping-card-style.css")
+}
+
+@section scripts{
+
+    @Scripts.Render("~/Scripts/shopping-cart-script.js")
+    <script type="text/javascript">
+
+        function submitOrder() {
+            var params = [];
+            $(".goods-list-item:input[type='checkbox']:checked").each(function () {
+                var foodid = $(this).val();
+                var number = $("input[type='number'][data-for-foodid='" + foodid + "']").val();
+                params.push({
+                    FoodId: foodid,
+                    Number: number,
+                    ReserveTime: new Date().Format("yyyy-MM-dd hh:mm:ss")
+                });
+            });
+
+            ajaxPost("@Url.Action("SubmitOrder", "Customer")",
+            { model :params},
+            function (result) {
+                if (result.Code == -200) {
+                    layer.msg('please login', 1, { type: 2 });
+                    window.location = "@Url.Action("Login", "Customer")";
+                } else {
+                    debugger;
+                    if (result.Code == 0) {
+                        layer.msg(result.Message, 1, { type: 1 }, function () {
+                            window.location.reload();
+                        });
+                        //loadList(1);
+                    } else {
+                        layer.msg(result.Message, 2, { type: 2 }, function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            },
+            function () {
+                layer.msg('fail', 1);
+            });
+        }
+    </script>
+}

@@ -12,6 +12,8 @@ namespace WrightWayRestaurant.Services.Interface
     {
         Order FirstOrDefault(OrderQuery query);
 
+        int AddBackId(Order entity);
+
         List<Order> Get(OrderQuery query);
 
         int Add(Order entity);

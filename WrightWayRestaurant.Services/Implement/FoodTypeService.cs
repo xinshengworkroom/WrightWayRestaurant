@@ -11,12 +11,35 @@ namespace WrightWayRestaurant.Services.Implement
     {
         public FoodType FirstOrDefault(FoodTypeQuery query)
         {
-            throw new System.NotImplementedException();
+            FoodType result = null;
+            List<FoodType> list = Get(query);
+            if (list != null)
+            {
+                result = list.FirstOrDefault();
+            }
+            return result;
         }
 
         public List<FoodType> Get(FoodTypeQuery query)
         {
-            throw new System.NotImplementedException();
+            List<FoodType> result = null;
+            IEnumerable<FoodType> enumerable = this.FoodType.AsEnumerable();
+            if (query.TypeId != null)
+            {
+                enumerable = enumerable.Where(o => o.TypeId == query.TypeId.Value);
+            }
+
+            if (!string.IsNullOrEmpty(query.TypeName))
+            {
+                enumerable = enumerable.Where(o => o.TypeName == query.TypeName);
+            }
+            
+
+            if (enumerable != null)
+            {
+                result = enumerable.ToList();
+            }
+            return result;
         }
 
         public int Add(FoodType entity)

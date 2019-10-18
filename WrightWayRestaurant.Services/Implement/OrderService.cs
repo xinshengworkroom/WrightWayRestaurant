@@ -11,12 +11,37 @@ namespace WrightWayRestaurant.Services.Implement
     {
         public Order FirstOrDefault(OrderQuery query)
         {
-            throw new System.NotImplementedException();
+            Order result = null;
+            List<Order> list = Get(query);
+            if (list != null)
+            {
+                result = list.FirstOrDefault();
+            }
+            return result;
         }
 
         public List<Order> Get(OrderQuery query)
         {
-            throw new System.NotImplementedException();
+            List<Order> result = null;
+            IEnumerable<Order> enumerable = this.Order.AsEnumerable();
+            if (query.OrderId != null)
+            {
+                enumerable = enumerable.Where(o => o.OrderId == query.OrderId.Value);
+            }
+
+            if (enumerable != null)
+            {
+                result = enumerable.ToList();
+            }
+            return result;
+        }
+
+        public int AddBackId(Order entity)
+        {
+            this.Order.Add(entity);
+            this.Entry<Order>(entity).State = EntityState.Added;
+            this.SaveChanges();
+            return entity.OrderId;
         }
 
         public int Add(Order entity)
@@ -29,26 +54,25 @@ namespace WrightWayRestaurant.Services.Implement
         public int Update(Order entity)
         {
             int result = 0;
-            var instance = this.Order.FirstOrDefault(o => o.OrderId == entity.OrderId);
-            if (instance != null)
-            {
-                instance = entity;
-                this.Entry<Order>(instance).State = EntityState.Modified;
-                result = this.SaveChanges();
-            }
+            this.Set<Order>().Attach(entity);
+            this.Entry(entity).State = EntityState.Modified;
+            this.Entry(entity).Property("UserId").IsModified = false;
+            this.Entry(entity).Property("CreateTime").IsModified = false;           
+            result = this.SaveChanges();
             return result;
         }
 
         public int Delete(int entityId)
         {
             int result = 0;
-            var instance = this.Order.FirstOrDefault(o => o.OrderId == entityId);
-            if (instance != null)
+            var entity = this.Set<Order>().Find(entityId);
+            if (entity != null)
             {
-                this.Entry<Order>(instance).State = EntityState.Deleted;
+                this.Set<Order>().Remove(entity);
                 result = this.SaveChanges();
             }
             return result;
         }
+
     }
 }

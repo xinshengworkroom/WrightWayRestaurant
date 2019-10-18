@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+
+}
+@Html.Partial("List")
+
+@Html.Partial("Detail")
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+            var _pageSize = 10;
+            $(function () {
+                $("#btnSave").click(function () {
+                    var params = getFormData("form_food_detail");
+                    if (params == false) return false;
+                    var file = $("#form_food_detail input[type='file']");
+                    var foodid = $("input[type='hidden'][id='FoodId']").val();
+                    var url = "@Url.Action("Add", "FoodType")";
+                    if (foodid != "") {
+                        url = "@Url.Action("Update", "FoodType")";
+                    }
+                    return false;
+                    fileUpload(file, params, url,
+                        function (result) {
+                            loadList(1);
+                        }, function (err) {
+
+
+                        });
+                });
+                initSelect("@Url.Action("Get","FoodType")", {}, "TypeId", "TypeName", "TypeId", "", function () { })
+                loadList(1);
+            });
+
+            function updateItem(itemId) {
+                if (itemId) {
+                    ajaxGet("@Url.Action("GetFirstOrDefault", "FoodType")",
+                        { foodId: itemId },
+                        function (result) {
+                            if (result) {
+                                deserializeForm("form_food_detail", result.Data);
+                                $('#foodDetailModal').modal("show");
+                            }
+                        },
+                        function () {
+                            layer.msg('fail', 1);
+                        });
+                }
+            }
+
+            function deleteItem(itemId) {
+                if (itemId)
+                    layer.confirm("Are you sure you want to delete ?",
+                        function (index) {
+                            layer.close(index);
+
+                            layer.msg('yes', 1, { type: 1 }, function () {
+
+                            });
+                            ajaxPost("@Url.Action("Delete", "FoodType")",
+                                { foodId: itemId },
+                                function (result) {
+                                    layer.msg('success', 1);
+                                    loadList(1);
+                                },
+                                function () {
+                                    layer.msg('fail', 1);
+                                });
+                        },
+                        "Tips",
+                        function (index) {
+                            layer.close(index);
+                            layer.msg('no',1);
+                        });
+            }
+
+
+            function loadList(pageIndex, pageSize) {
+                var param = {
+                    PageIndex: pageIndex,
+                    PageSize: pageSize == undefined ? _pageSize : pageSize
+                };
+                ajaxGet("@Url.Action("Get", "FoodType")",
+                param,
+                function (result) {
+                   // debugger;
+                    if (result.Data == undefined) return;
+                    var data = {
+                        list: result.Data
+                    }
+                    //$("#totalPageCount").text("共计：" + result.Data.TotalCount + "条记录/共计：" + result.Data.PageCount + "页");
+                    $("#foodTypeList").html(template("foodTypeListTemplate", data));
+                    if (result.Data.TotalCount <= 0) {
+                        $("#foodTypeList").html("<tr><td colspan='9' class='text-center'><span>暂无数据</span></td></tr>");
+                    }
+
+                    //PageScroller("paginateUp", result.Data.PageCount, pageIndex, loadList, 6);
+                    //PageScroller("paginateDown", result.Data.PageCount, pageIndex, loadList, 6);
+                },
+                function () {
+                    layer.msg('fail', 1);
+                });
+            }
+    </script>
+}

@@ -1,0 +1,129 @@
+﻿@model WrightWayRestaurant.Web.Models.CustomerRegisterViewModel
+@{
+    ViewBag.Title = "Customer Register";
+}
+<div class="form-bg">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                @using (Ajax.BeginForm("Register", "Customer", null, new AjaxOptions { OnBegin = "onLoginBegin", OnFailure = "onLoginFailure", OnComplete = "onLoginComplete", HttpMethod = "Post" }, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="heading">Register Form</div>
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBoxFor(m => m.CustomerName, new { @placeholder = "Name", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "text-danger text-error", })
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBoxFor(m => m.PhoneNo, new { @placeholder = "PhoneNo", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "text-danger text-error", })
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger text-error", })
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "Input password", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-error" })
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Input Confirm Password", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger text-error" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger text-error" })
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-primary btn-submit" value="Submit" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section styles{
+    @Styles.Render("~/Content/css/customer-form.css")
+}
+
+@section scripts{
+<script type="text/javascript">
+        function onLoginBegin(e) {
+            $("span[data-valmsg-for]").text("");
+            if ($.trim($('#CustomerName').val()) == '') {
+                $("span[data-valmsg-for='CustomerName']").text("please input name");
+                $('#CustomerName').focus();
+                return false;
+            }
+            if ($.trim($('#PhoneNo').val()) == '') {
+                $("span[data-valmsg-for='PhoneNo']").text("please input PhoneNo");
+                $('#PhoneNo').focus();
+                return false;
+            }
+            if ($.trim($('#Email').val()) == '') {
+                $("span[data-valmsg-for='Email']").text("please input Email");
+                $('#Email').focus();
+                return false;
+            }
+            if ($.trim($('#Password').val()) == '') {
+                $("span[data-valmsg-for='Password']").text("please input password");
+                $('#Password').focus();
+                return false;
+            }
+
+            if ($.trim($('#ConfirmPassword').val()) == '') {
+                $("span[data-valmsg-for='ConfirmPassword']").text("please input ConfirmPassword");
+                $('#ConfirmPassword').focus();
+                return false;
+            }
+
+            if ($.trim($('#ConfirmPassword').val()) != $.trim($('#Password').val())) {
+                $("span[data-valmsg-for='ConfirmPassword']").text("ConfirmPassword not Equals Password");
+                $('#ConfirmPassword').focus();
+                return false;
+            }
+            $("span[data-valmsg-for]").text("");
+            $('.btn-submit').val('submitting...').attr("disabled", true);
+        }
+
+        function onLoginFailure(e) {
+            $('.btn-submit').val('submit').attr("disabled", false);
+        }
+
+        function onLoginComplete(e) {
+            try {
+                var json = e.responseJSON;
+                if (json && json.Code != undefined && json.Code == 0) {
+                    $('.btn-submit').val('submit success jumping...');                   
+                    layer.msg("Register success", 2000, {}, function () {
+                        window.location = "@Url.Action( "Login", "Customer", new { area=""})";
+                    });
+
+                } else {
+                    $('.btn-submit').val('submit').attr("disabled", false);
+                    if (e.status !== 500) {
+                        for (var name in json.Data) {
+                            var obj = json.Data[name];
+                            if (obj.Errors.length > 0) {
+                                $("span[data-valmsg-for='" + name + "']").text(obj.Errors[0].ErrorMessage);
+                            }
+                        }
+                    } else {
+                        alert("submit error");
+                    }
+                }
+            } catch (ex) {
+                alert("submit error");
+            }
+        }
+</script>
+}
+
+
+

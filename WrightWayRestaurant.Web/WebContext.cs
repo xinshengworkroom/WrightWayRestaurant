@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Security;
 using WrightWayRestaurant.Framework.Utility;
@@ -50,6 +52,42 @@ namespace WrightWayRestaurant.Web
         public bool IsAuthenticated
         {
             get { return SessionCustomer != null; }
+        }
+
+
+        public List<Food> ShoppingCard
+        {
+            get
+            {
+                return HttpContext.Current.Session["ShoppingCard"] as List<Food>;
+            }
+        }
+
+        public void AddToShoppingCard(Food food)
+        {
+            var curCard = ShoppingCard;
+            if (curCard != null)
+            {
+                var item = curCard.FirstOrDefault(f=>f.FoodId == food.FoodId);
+                if (item != null)
+                {
+                    item.Stock += food.Stock;
+                }
+                else
+                {
+                    curCard.Add(food);
+                }
+            }
+            else
+            {
+                curCard = new List<Food> { food};
+            }
+            HttpContext.Current.Session["ShoppingCard"] = curCard;
+        }
+
+        public void ClearShoppingCard()
+        {
+            HttpContext.Current.Session.Remove("ShoppingCard");
         }
     }
 }
