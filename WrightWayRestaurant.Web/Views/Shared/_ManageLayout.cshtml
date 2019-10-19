@@ -14,21 +14,12 @@
     @Styles.Render("~/Content/css/jquery.nouislider.css")
     @RenderSection("styles", required: false)
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/layer")
-    @Scripts.Render("~/Scripts/jquery.nouislider.js")
-    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
-    @*@Scripts.Render("~/Scripts/ajaxfileupload.js")*@
-    @Scripts.Render("~/Scripts/fileUpload.js")
-    @Scripts.Render("~/Scripts/template.js")
-    @Scripts.Render("~/Scripts/common.js")
-    @RenderSection("scripts", required: false)
+
 </head>
 
 <body>
     <div id="wrap">
-        <div class="leftMeun" id="leftMeun" >
+        <div class="leftMeun" id="leftMeun">
             @Html.Partial("_ManageLeftMenu")
         </div>
         <div id="rightContent">
@@ -41,6 +32,43 @@
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layer")
+    @Scripts.Render("~/Scripts/jquery.nouislider.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @*@Scripts.Render("~/Scripts/ajaxfileupload.js")*@
+    @Scripts.Render("~/Scripts/fileUpload.js")
+    @Scripts.Render("~/Scripts/template.js")
+    @Scripts.Render("~/Scripts/common.js")
+    <script type="text/javascript">
+            $(function () {
+                $(".meun-item").click(function () {
+                    $(".meun-item").removeClass("meun-item-active");
+                    $(this).addClass("meun-item-active");
+                    var itmeObj = $(".meun-item").find("img");
+                    itmeObj.each(function () {
+                        var items = $(this).attr("src");
+                        items = items.replace("_grey.png", ".png");
+                        items = items.replace(".png", "_grey.png")
+                        $(this).attr("src", items);
+                    });
+                    var attrObj = $(this).find("img").attr("src");
+                    ;
+                    attrObj = attrObj.replace("_grey.png", ".png");
+                    $(this).find("img").attr("src", attrObj);
+                    window.location = $(this).attr("href");
+                });
 
+                $(".meun-item").each(function () {
+                    if (window.location.toString().indexOf($(this).attr("href")) > -1) {
+                        $(".meun-item").removeClass("meun-item-active");
+                        $(this).addClass("meun-item-active");
+                        return;
+                    }
+                });
+            });
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

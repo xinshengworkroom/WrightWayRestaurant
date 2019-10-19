@@ -5,7 +5,7 @@
 @Html.Action("Rotationchart", "Home")
 
 
-
+@Html.Action("BookSeat", "Order")
 
 
 
@@ -55,10 +55,10 @@
             height: 300px;
             margin-left: 50px;
             margin-top: 50px;
-            text-align:center;
+            text-align: center;
             float: left;
         }
-       
+
         .foodimg {
             width: 230px;
             height: 200px;
@@ -66,6 +66,22 @@
             margin-top: 50px;
             float: left;
         }
+        .food-dialog {
+            width: 120px;
+            height: 240px;
+            margin-left: 20px;
+            margin-top: 20px;
+            text-align: center;
+            float: left;
+        }
+        .foodimg-dialog {
+            width: 100px;
+            height: 70px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+
     </style>
     @Styles.Render("~/Content/css/shopping-card-style.css")
 }
@@ -93,5 +109,5 @@
 
 
 
-    </script>    
+    </script>
 }

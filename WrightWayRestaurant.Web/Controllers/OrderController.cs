@@ -18,10 +18,15 @@ namespace WrightWayRestaurant.Web.Controllers
 
         IOrderDetailService OrderDetailService { get; set; }
 
-        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService)
+        IFoodService FoodService { get; set; }
+
+        public OrderController(IOrderService orderService, 
+            IOrderDetailService orderDetailService,
+            IFoodService foodService)
         {         
             OrderService = orderService;
             OrderDetailService = orderDetailService;
+            FoodService = foodService;
         }
 
 
@@ -32,10 +37,11 @@ namespace WrightWayRestaurant.Web.Controllers
             return View();
         }
 
-        [WebAuthorize]
+        //[WebAuthorize]
         public ActionResult BookSeat()
         {
-            return View();
+            var Data = FoodService.Get(new FoodQuery { });
+            return PartialView(Data);
         }
 
         [WebAuthorize]
@@ -65,6 +71,15 @@ namespace WrightWayRestaurant.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [WebAuthorize]
+        public ActionResult GetFirstOrDefaultForWeb(int orderId)
+        {
+            var result = new ResultData<object>(ResultStatusEnums.Fail) { Message = "" };
+            result.Data = OrderService.FirstOrDefault(new OrderQuery { OrderId = orderId });
+            result.Code = (int)ResultStatusEnums.Success;
+            result.Message = "Success";
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         [ManageAuthorize]
         public ActionResult Add(Order entity)
@@ -101,6 +116,27 @@ namespace WrightWayRestaurant.Web.Controllers
         public ActionResult Delete(int orderId)
         {
             var result = new ResultData<object>(ResultStatusEnums.Fail) { Message = "" };
+            var order = OrderService.FirstOrDefault(new OrderQuery { OrderId = orderId });
+            foreach (OrderDetail detail in order.OrderDetail)
+                OrderDetailService.Delete(detail.DetailId);
+            int rows = OrderService.Delete(orderId);
+            if (rows > 0)
+            {
+                result.Code = (int)ResultStatusEnums.Success;
+                result.Message = "Delete Success";
+            }
+
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+        
+        [WebAuthorize]
+        public ActionResult DeleteForWeb(int orderId)
+        {
+            var result = new ResultData<object>(ResultStatusEnums.Fail) { Message = "" };
+            var order = OrderService.FirstOrDefault(new OrderQuery { OrderId = orderId });
+            foreach (OrderDetail detail in order.OrderDetail)
+                OrderDetailService.Delete(detail.DetailId);
+          
             int rows = OrderService.Delete(orderId);
             if (rows > 0)
             {

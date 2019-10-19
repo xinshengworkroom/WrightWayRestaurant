@@ -298,6 +298,12 @@
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Order\List.cshtml" />
     <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\SystemUser\List.cshtml" />
+    <Content Include="Views\SystemUser\Detail.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Customer\Information.cshtml" />
+    <Content Include="Views\Customer\MyInformation.cshtml" />
+    <Content Include="Views\Customer\MyOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -169,16 +169,15 @@
                 if (result.Code == -200) {
                     layer.msg('please login', 1, { type: 2 });
                     window.location = "@Url.Action("Login", "Customer")";
-                } else {
-                    debugger;
+                } else {                    
                     if (result.Code == 0) {
                         layer.msg(result.Message, 1, { type: 1 }, function () {
                             window.location.reload();
                         });
                         //loadList(1);
                     } else {
-                        layer.msg(result.Message, 2, { type: 2 }, function () {
-                            window.location.reload();
+                        layer.msg(result.Message, 2, { type: 3 }, function () {
+                            //window.location.reload();
                         });
                     }
                 }

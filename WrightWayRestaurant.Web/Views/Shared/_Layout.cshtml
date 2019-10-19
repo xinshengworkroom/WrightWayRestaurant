@@ -15,23 +15,7 @@
                 @Html.ActionLink("Wright Way Restaurant", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        @Html.ActionLink("Order", "Index", "Order", null, new Dictionary<string, object> { { "class", "dropdown-toggle" }, { "data-toggle", "dropdown" } })
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Book A Seat", "ShoppingCart", "Home")</li>
-                            <li>@Html.ActionLink("Order Food", "ShoppingCart", "Home")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        @Html.ActionLink("Information About us", "About", "Information", null, new Dictionary<string, object> { { "class", "dropdown-toggle" }, { "data-toggle", "dropdown" } })
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("location", "Location", "Information")</li>
-                            <li>@Html.ActionLink("contact", "Contact", "Information")</li>
-                            <li>@Html.ActionLink("our team", "OurTeam", "Information")</li>
-                        </ul>
-                    </li>
-                </ul>
+                @Html.Partial("_Nav")
             </div>
         </div>
     </div>
@@ -43,6 +27,7 @@
     @Scripts.Render("~/bundles/layer")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/Scripts/template.js")
     @Scripts.Render("~/Scripts/common.js")
     @RenderSection("scripts", required: false)
 </body>

@@ -20,9 +20,10 @@ namespace WrightWayRestaurant.Services.Implement
             return result;
         }
 
-        public List<Food> Get(FoodQuery query)
+        public List<Food> Get(FoodQuery query = null)
         {
             List<Food> result = null;
+            if (query == null) return this.Food.ToList();
             IEnumerable<Food> enumerable = this.Food.AsEnumerable();
             if (query.FoodId != null)
             {

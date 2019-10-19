@@ -1,0 +1,41 @@
+﻿
+
+<ul class="nav navbar-nav">
+    <li class="dropdown">
+        @Html.ActionLink("Order", "Index", "Order", null, new Dictionary<string, object> { { "class", "dropdown-toggle" }, { "data-toggle", "dropdown" } })
+        <ul class="dropdown-menu">
+            <li>
+                @*@Html.ActionLink("Book A Seat", "BookSeat", "Order", null, new Dictionary<string, object> { { "data-toggle", "modal" }, { "data-target", "#bookSeatModal" } })*@
+                <a data-target="#bookSeatModal" data-toggle="modal" href="#">Book A Seat</a>
+
+            </li>
+            @*<li> @Html.ActionLink("Order Food", "ShoppingCart", "Home")</li>*@
+            <li>@Html.ActionLink("Order Food", "MyOrder", "Customer")</li>
+
+        </ul>
+    </li>
+    <li class="dropdown">
+        @Html.ActionLink("Information About us", "About", "Information", null, new Dictionary<string, object> { { "class", "dropdown-toggle" }, { "data-toggle", "dropdown" } })
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("location", "Location", "Information")</li>
+            <li>@Html.ActionLink("contact", "Contact", "Information")</li>
+            <li>@Html.ActionLink("our team", "OurTeam", "Information")</li>
+        </ul>
+    </li>
+    <li class="dropdown" style="margin-left:500px;">
+        @if (WebContext.Current.IsAuthenticated)
+        {
+            @Html.ActionLink(WebContext.Current.SessionCustomer.CustomerName, "Information", "Customer", null, new Dictionary<string, object> { { "class", "dropdown-toggle" }, { "data-toggle", "dropdown" } })
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("My Information", "MyInformation", "Customer")</li>
+                <li>@Html.ActionLink("My Order", "MyOrder", "Customer")</li>
+                <li>@Html.ActionLink("Logout", "Logout", "Customer")</li>
+            </ul>
+        }
+        else
+        {
+            @Html.ActionLink("Login", "Login", "Customer")
+        }
+
+    </li>
+</ul>

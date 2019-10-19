@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "MyInformation";
+}
+
+
+<div class="form-bg">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                <form action="" class="form-horizontal" data-ajax="true" data-ajax-begin="onLoginBegin" data-ajax-complete="onLoginComplete" data-ajax-failure="onLoginFailure" data-ajax-method="Post" id="form_MyInformation" method="post" role="form">
+                    @{
+
+                        var my = WebContext.Current.SessionCustomer;
+                    }
+
+
+                    <input name="__RequestVerificationToken" type="hidden" value="aYyc6xxCbk5VZFxWVYKeXFnG9qoUQbPpqJh5ImubZs-4Mot1IvWeo9tAwKAkOm3EDCT_ErYpV8sEgc5xJfbstm3yAW5zghY5rYYtzkNQ9981">
+                    <div class="heading">My Information</div>
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input class="form-control" data-val="true" data-val-required="CustomerId" id="CustomerId" name="CustomerId" placeholder="CustomerId" type="hidden" value="@my.CustomerId">
+                    </div>                   
+                    <div class="form-group" title="Customer Name">
+                        <i class="fa fa-user"></i>
+                        
+                        <input class="form-control" title="Customer Name" data-val="true" data-val-required="Name" id="CustomerName" name="CustomerName" placeholder="Name" type="text" value="@my.CustomerName">
+                        <span class="field-validation-valid text-danger text-error" data-valmsg-for="CustomerName" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group" title="PhoneNo">
+                        <i class="fa fa-user"></i>
+                        <input class="form-control" data-val="true" data-val-required="PhoneNo" id="PhoneNo" name="PhoneNo" placeholder="PhoneNo" type="text" value="@my.PhoneNo">
+                        <span class="field-validation-valid text-danger text-error" data-valmsg-for="PhoneNo" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group" title="Email">
+                        <i class="fa fa-user"></i>
+                        <input class="form-control" data-val="true" data-val-required="Email" id="Email" name="Email" placeholder="Email" type="text" value="@my.Email">
+                        <span class="field-validation-valid text-danger text-error" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group" title="Password">
+                        <i class="fa fa-lock"></i>
+                        <input class="form-control" data-val="true" data-val-required="Password" id="Password" name="Password" placeholder="Input password" type="password" value="@my.Password">
+                        <span class="field-validation-valid text-danger text-error" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group" title="Confirm password">
+                        <i class="fa fa-lock"></i>
+                        <input class="form-control" data-val="true" data-val-required="Confirm password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Input Confirm Password" type="password" value="@my.Password">
+                        <span class="field-validation-valid text-danger text-error" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="button" class="btn btn-primary btn-save" value="Save" id="btnSave">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section styles{
+    @Styles.Render("~/Content/css/customer-form.css")
+}
+
+@section scripts{
+    <script type="text/javascript">
+           
+            $(function () {
+                $("#btnSave").click(function () {
+                    var params = getFormData("form_MyInformation");
+                    if (params == false) return false;
+                    $("span[data-valmsg-for]").text("");
+                    if ($.trim(params.ConfirmPassword) != $.trim(params.Password)) {
+                        $("span[data-valmsg-for='ConfirmPassword']").text("ConfirmPassword not Equals Password");
+                        $('#ConfirmPassword').focus();
+                        return false;
+                    }
+                    $("span[data-valmsg-for]").text("");
+                    ajaxPost("@Url.Action("SaveMyInformation", "Customer")", params,
+                        function (result) {
+                            layer.msg('success', 1, {type:1}, function () {
+                                window.location.reload();
+                            });
+
+                        }, function (err) {
+                            
+                        });
+                });               
+            });
+    </script>
+}

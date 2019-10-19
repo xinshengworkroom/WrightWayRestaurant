@@ -37,11 +37,21 @@
 <div class="">
     @foreach (var food in data)
     {
+        var disabled =  "";
+        var stock = food.Stock.ToString();
+        var color = "blue";
+        if (food.Stock < 1)
+        {
+            disabled = "disabled";
+            stock = "out of stock";
+            color = "red";
+        }
         <div class="food">
-            <img class="foodimg" src="../@food.Foodimg"><br/>
+            <img class="foodimg" src="../@food.Foodimg"><br />
             <span>Food Name: @food.FoodName</span><br />
-            <span>Price: ￥@food.Price</span><br />
-            <input type="button" class="btn btn-danger" value="add to cart" onclick="javascript:addToShoppingCard('@food.FoodId')"/>
+            <span>Price: ￥@Math.Round(food.Price.Value,2)</span><br />
+            <span style="color:@color;">Stock: @stock</span><br />
+            <input type="button" class="btn btn-danger" value="add to cart" @disabled onclick="javascript:addToShoppingCard('@food.FoodId')" />
         </div>
     }
 </div>

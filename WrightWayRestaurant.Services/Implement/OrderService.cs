@@ -28,7 +28,10 @@ namespace WrightWayRestaurant.Services.Implement
             {
                 enumerable = enumerable.Where(o => o.OrderId == query.OrderId.Value);
             }
-
+            if (query.CustomerId != null)
+            {
+                enumerable = enumerable.Where(o => o.CustomerId == query.CustomerId.Value);
+            }
             if (enumerable != null)
             {
                 result = enumerable.ToList();

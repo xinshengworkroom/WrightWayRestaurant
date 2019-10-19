@@ -69,7 +69,7 @@
             try {
                 var json = e.responseJSON;
                 if (json && json.Code != undefined && json.Code == 0) {
-                    $('.btn-login').val('jumping...');
+                    $('.btn-login').val('...');
                     window.location = "@Url.Action( "Index", "Home",new { area=""})";
                 } else {
                     $('.btn-login').val('Login').attr("disabled", false);

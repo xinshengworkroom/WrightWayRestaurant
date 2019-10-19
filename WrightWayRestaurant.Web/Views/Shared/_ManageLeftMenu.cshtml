@@ -2,7 +2,7 @@
     <p id="logoP"><img id="logo" alt="Wright Way Restaurant" src="~/Content/images/logo.png"><span>Management</span></p>
 </div>
 <div id="personInfor">
-    @if (ManageContext.Current.SessionUser != null)
+    @if (ManageContext.Current.IsAuthenticated)
     {
         <p id="userName">@ManageContext.Current.SessionUser.UserName</p>
         <p><span>@ManageContext.Current.SessionUser.Email</span></p>
@@ -13,36 +13,40 @@
 </div>
 <div class="meun-title">Customer manage</div>
 <div class="meun-item" href="@Url.Action("Index","Order")" aria-controls="sour" role="tab" data-toggle="tab"><img src="~/Content/images/icon_source.png">Order Manage</div>
-<div class="meun-item" href="@Url.Action("Index","Customer")" aria-controls="char" role="tab" data-toggle="tab"><img src="~/Content/images/icon_chara_grey.png">Customer</div>
+@*<div class="meun-item" href="@Url.Action("Index","Customer")" aria-controls="char" role="tab" data-toggle="tab"><img src="~/Content/images/icon_chara_grey.png">Customer</div>*@
 <div class="meun-title">system manage</div>
 <div class="meun-item" href="@Url.Action("Index","Food")" aria-controls="scho" role="tab" data-toggle="tab"><img src="~/Content/images/icon_house_grey.png">Food Manage</div>
-<div class="meun-item" href="@Url.Action("Index","SystemUser")" aria-controls="scho" role="tab" data-toggle="tab"><img src="~/Content/images/icon_house_grey.png">System User</div>
-<div class="meun-item" href="@Url.Action("Index","EmailConfig")" aria-controls="regu" role="tab" data-toggle="tab"><img src="~/Content/images/icon_rule_grey.png">Email Config</div>
-<script>
-        $(function () {
-            $(".meun-item").click(function () {
-                $(".meun-item").removeClass("meun-item-active");
-                $(this).addClass("meun-item-active");
-                var itmeObj = $(".meun-item").find("img");
-                itmeObj.each(function () {
-                    var items = $(this).attr("src");
-                    items = items.replace("_grey.png", ".png");
-                    items = items.replace(".png", "_grey.png")
-                    $(this).attr("src", items);
-                });
-                var attrObj = $(this).find("img").attr("src");
-                ;
-                attrObj = attrObj.replace("_grey.png", ".png");
-                $(this).find("img").attr("src", attrObj);
-                window.location = $(this).attr("href");
-            });
+@*<div class="meun-item" href="@Url.Action("Index","SystemUser")" aria-controls="scho" role="tab" data-toggle="tab"><img src="~/Content/images/icon_house_grey.png">System User</div>
+<div class="meun-item" href="@Url.Action("Index","EmailConfig")" aria-controls="regu" role="tab" data-toggle="tab"><img src="~/Content/images/icon_rule_grey.png">Email Config</div>*@
 
-            $(".meun-item").each(function () {                
-                if (window.location.toString().indexOf($(this).attr("href")) > -1) {
+@section scripts{
+    <script type="text/javascript">
+            $(function () {
+                $(".meun-item").click(function () {
                     $(".meun-item").removeClass("meun-item-active");
                     $(this).addClass("meun-item-active");
-                    return;
-                }
+                    var itmeObj = $(".meun-item").find("img");
+                    itmeObj.each(function () {
+                        var items = $(this).attr("src");
+                        items = items.replace("_grey.png", ".png");
+                        items = items.replace(".png", "_grey.png")
+                        $(this).attr("src", items);
+                    });
+                    var attrObj = $(this).find("img").attr("src");
+                    ;
+                    attrObj = attrObj.replace("_grey.png", ".png");
+                    $(this).find("img").attr("src", attrObj);
+                    window.location = $(this).attr("href");
+                });
+
+                $(".meun-item").each(function () {
+                    if (window.location.toString().indexOf($(this).attr("href")) > -1) {
+                        $(".meun-item").removeClass("meun-item-active");
+                        $(this).addClass("meun-item-active");
+                        return;
+                    }
+                });
             });
-        });
-</script>
+    </script>
+    
+}

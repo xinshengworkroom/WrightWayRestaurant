@@ -64,23 +64,20 @@ namespace WrightWayRestaurant.Services.Implement
         public int Update(Customer entity)
         {
             int result = 0;
-            var instance = this.Customer.FirstOrDefault(e => e.CustomerId == entity.CustomerId);
-            if (instance != null)
-            {
-                instance = entity;
-                this.Entry<Customer>(instance).State = EntityState.Modified;
-                result = this.SaveChanges();
-            }
+            this.Set<Customer>().Attach(entity);
+            this.Entry(entity).State = EntityState.Modified;          
+            this.Entry(entity).Property("CreateTime").IsModified = false;
+            result = this.SaveChanges();
             return result;
         }
 
         public int Delete(Guid entityId)
         {
             int result = 0;
-            var instance = this.Customer.FirstOrDefault(e => e.CustomerId == entityId);
-            if (instance != null)
+            var entity = this.Set<Customer>().Find(entityId);
+            if (entity != null)
             {
-                this.Entry<Customer>(instance).State = EntityState.Deleted;
+                this.Set<Customer>().Remove(entity);
                 result = this.SaveChanges();
             }
             return result;

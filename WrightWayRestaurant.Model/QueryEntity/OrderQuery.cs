@@ -9,5 +9,6 @@ namespace WrightWayRestaurant.Model.QueryEntity
     public class OrderQuery
     {
         public int? OrderId { get; set; }
+        public Guid? CustomerId { get; set; }
     }
 }

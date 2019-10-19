@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Information";
+}
+
+<div id="wrap">
+    <div class="leftMeun" id="leftMeun">
+        <div id="logoDiv">
+            <p id="logoP"><img id="logo" alt="Wright Way Restaurant" src="~/Content/images/logo.png"><span>vip</span></p>
+        </div>
+        <div id="personInfor">
+            @if (WebContext.Current.IsAuthenticated)
+            {
+                <p id="userName">@WebContext.Current.SessionCustomer.CustomerName</p>
+                <p><span>@WebContext.Current.SessionCustomer.Email</span></p>
+                <p>
+                    @Html.ActionLink("logout", "Logout", "Customer")
+                </p>
+            }
+        </div>
+        <div class="meun-item" href="#" aria-controls="sour" role="tab" data-toggle="tab"><img src="~/Content/images/icon_source.png">My Accout</div>
+        <div class="meun-item" href="#" aria-controls="char" role="tab" data-toggle="tab"><img src="~/Content/images/icon_chara_grey.png">My Order</div>
+    </div>
+    <div id="rightContent">
+        <a class="toggle-btn" id="nimei">
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </a>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+        </div>
+    </div>
+</div>
+
+@section styles{
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/common.css")
+    @Styles.Render("~/Content/css/slide.css")
+}
+@section scripts{
+    <script type="text/javascript">
+            $(function () {
+                $(".meun-item").click(function () {
+                    $(".meun-item").removeClass("meun-item-active");
+                    $(this).addClass("meun-item-active");
+                    var itmeObj = $(".meun-item").find("img");
+                    itmeObj.each(function () {
+                        var items = $(this).attr("src");
+                        items = items.replace("_grey.png", ".png");
+                        items = items.replace(".png", "_grey.png")
+                        $(this).attr("src", items);
+                    });
+                    var attrObj = $(this).find("img").attr("src");
+                    ;
+                    attrObj = attrObj.replace("_grey.png", ".png");
+                    $(this).find("img").attr("src", attrObj);
+                    window.location = $(this).attr("href");
+                });
+
+                $(".meun-item").each(function () {
+                    if (window.location.toString().indexOf($(this).attr("href")) > -1) {
+                        $(".meun-item").removeClass("meun-item-active");
+                        $(this).addClass("meun-item-active");
+                        return;
+                    }
+                });
+            });
+    </script>
+
+}

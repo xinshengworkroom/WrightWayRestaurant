@@ -163,6 +163,7 @@ function getFormData(formId) {
                     case "text":
                     case "number":
                     case "hidden":
+                    case "password":
                         if ($this.data("required") && (value == undefined || value == "")) {
                             layer.msg($this.data("required-message"));
                             $this.focus();
@@ -209,6 +210,7 @@ function deserializeForm(formId, data) {
                         case "text":
                         case "number":
                         case "hidden":
+                        case "password":
                             $element.val(value);
                             break;
                         case "checkbox":

@@ -1,7 +1,43 @@
-﻿
-@{
-    ViewBag.Title = "BookSeat";
-}
+﻿<div class="modal fade" id="bookSeatModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">book a seat</h4>
+            </div>
+            <div class="modal-body">
 
-<h2>BookSeat</h2>
+                <div class="container-fluid" style="min-height:600px;max-height:700px;overflow-y:scroll;">
+                    @{
+                        var data = Model as List<WrightWayRestaurant.Model.Food>;
 
+                        foreach (var food in data)
+                        {
+                            var disabled = "";
+                            var stock = "Stock: " + food.Stock.ToString();
+                            var color = "blue";
+                            if (food.Stock < 1)
+                            {
+                                disabled = "disabled";
+                                stock = "out of stock";
+                                color = "red";
+                            }
+                            <div class="food-dialog">
+                                <img class="foodimg-dialog" src="../@food.Foodimg"><br />
+                                <span>Food Name: @food.FoodName</span><br />
+                                <span>Price: ￥@Math.Round(food.Price.Value,2)</span><br />
+                                <span style="color:@color;">@stock</span><br />
+                                <input type="button" class="btn btn-danger" value="add to cart" @disabled onclick="javascript:addToShoppingCard('@food.FoodId')" />
+                            </div>
+                        }
+                    }
+
+
+                </div>
+                <a class="btn btn-danger btn-xs" href="@Url.Action("ShoppingCart","Home")" target="_blank">GO TO Shopping Cart</a>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

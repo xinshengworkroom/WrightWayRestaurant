@@ -8,7 +8,7 @@ namespace WrightWayRestaurant.Services.Interface
     {
         Food FirstOrDefault(FoodQuery query);
 
-        List<Food> Get(FoodQuery query);
+        List<Food> Get(FoodQuery query = null);
 
         int Add(Food entity);
 

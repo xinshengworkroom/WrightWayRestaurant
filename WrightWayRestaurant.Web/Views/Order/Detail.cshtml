@@ -13,7 +13,8 @@
                                 <th class="col-xs-1 ">DetailId</th>
                                 <th class="col-xs-1 ">FoodName</th>
                                 <th class="col-xs-1 ">Price</th>
-                                <th class="col-xs-1 ">Number</th>                               
+                                <th class="col-xs-1 ">Number</th>
+                                <th class="col-xs-1 ">Total Money</th>
                             </tr>
                         </thead>
                         <tbody id="orderDetailList"></tbody>
@@ -34,9 +35,13 @@
     {{each list as value}}    
     <tr>
         <td class="col-xs-1">{{value.DetailId}}</td>
-        <td class="col-xs-1">{{value.Food.FoodName}}</td>
-        <td class="col-xs-1">{{value.Food.Price}}</td>
-        <td class="col-xs-1">{{value.Number}}</td>      
+        <td class="col-xs-1">
+            <img style="width:60px;height:60px;" src="../{{value.Food.Foodimg}}" />
+            {{value.Food.FoodName}}
+        </td>
+        <td class="col-xs-1">￥{{value.Food.Price}}</td>
+        <td class="col-xs-1">{{value.Number}}</td>
+        <td class="col-xs-1">￥{{value.Number*value.Food.Price}}</td>
     </tr>    
     {{/each}}
 </script>

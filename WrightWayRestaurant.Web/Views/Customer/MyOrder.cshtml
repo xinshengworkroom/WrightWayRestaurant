@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "MyOrder";
+}
+
+<div class="data-div">
+    <table class="table apply-table table-hover" style="margin-bottom:0;">
+        <thead class="row tableHeader">
+            <tr>
+                <th class="col-xs-1 ">OrderId</th>
+                <th class="col-xs-1 ">Customer</th>
+                <th class="col-xs-1 ">Email</th>
+                <th class="col-xs-1 ">PhoneNo</th>
+                <th class="col-xs-1 ">ReserveTime</th>
+                <th class="col-xs-1 ">CreateTime</th>
+                <th class="col-xs-1 ">OrderState</th>
+                <th class="col-xs-2 ">Operate</th>
+            </tr>
+        </thead>
+        <tbody id="orderList">
+            @{
+                var data = Model as List<WrightWayRestaurant.Model.Order>;
+                if (data != null)
+                {
+                    foreach (var order in data)
+                    {
+                        <tr>
+                            <td class="col-xs-1 ">@order.OrderId</td>
+                            <td class="col-xs-1 ">@order.Customer.CustomerName</td>
+                            <td class="col-xs-1 ">@order.Customer.Email</td>
+                            <td class="col-xs-1 ">@order.Customer.PhoneNo</td>
+                            <td class="col-xs-1 ">@order.ReserveTime</td>
+                            <td class="col-xs-1 ">@order.CreateTime</td>
+                            <td class="col-xs-1 ">@order.OrderState</td>
+                            <td class="col-xs-2 ">
+                                <button class="btn btn-success btn-xs" data-toggle="modal" onclick="javascript:lookOrder('@order.OrderId','@order.OrderState');">Look</button>
+                                <button class="btn btn-danger btn-xs btnDelete" data-toggle="modal" onclick="javascript:deleteOrder('@order.OrderId','@order.OrderState');">Delete</button>
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr><td colspan="8">no order</td></tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="orderDetailModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Order Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    @Html.Hidden("OrderId")
+                    <table class="table apply-table table-hover" style="margin-bottom:0;">
+                        <thead class="row tableHeader">
+                            <tr>
+                                <th class="col-xs-1 ">DetailId</th>
+                                <th class="col-xs-1 ">FoodName</th>
+                                <th class="col-xs-1 ">Price</th>
+                                <th class="col-xs-1 ">Number</th>
+                                <th class="col-xs-1 ">Total money</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderDetailList"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-xs" onclick="javascript: takeMyOrder('Dine in')" >Dine in</button>
+                <button type="button" class="btn btn-danger btn-xs" onclick="javascript: takeMyOrder('Take away')">Take away</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script id="orderDetailListTemplate" type="text/html">
+    {{each list as value}}
+    <tr>
+        <td class="col-xs-1">{{value.DetailId}}</td>
+        <td class="col-xs-1">
+            <img style="width:60px;height:60px;" src="../{{value.Food.Foodimg}}" /><br />
+            {{value.Food.FoodName}}
+        </td>
+        <td class="col-xs-1">￥{{value.Food.Price*1.00}}</td>
+        <td class="col-xs-1">{{value.Number}}</td>
+        <td class="col-xs-1">￥{{value.Number*value.Food.Price*1.00}}</td>
+    </tr>
+    {{/each}}
+</script>
+
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        function takeMyOrder(state) {
+            var params = {
+                OrderId: $("[id='OrderId']").val(),
+                OrderState:state
+            };
+
+            ajaxPost("@Url.Action("SaveMyOrder", "Customer")",
+        params,
+        function (result) {
+            layer.msg('success', 1, {type:1}, function () {
+                window.location.reload();                
+            });
+
+        },
+        function () {
+            layer.msg('fail', 1);
+        });
+        }
+
+    function lookOrder(itemId,state) {
+        if (itemId) {
+            ajaxGet("@Url.Action("GetFirstOrDefaultForWeb", "Order")",
+        { orderId: itemId },
+        function (result) {
+            if (result) {
+                if (result.Data == undefined) return;
+
+                $("[id='OrderId']").val(itemId);
+                var data = {
+                    list: result.Data.OrderDetail
+                }
+                $("#orderDetailList").html(template("orderDetailListTemplate", data));
+                if (result.Data.TotalCount <= 0) {
+                    $("#orderDetailList").html("<tr><td colspan='4' class='text-center'><span>no data</span></td></tr>");
+                }
+                $(".modal-footer").hide();
+                if (state == "")
+                {
+                    $(".modal-footer").show();
+                }
+
+
+                $('#orderDetailModal').modal("show");
+
+            }
+        },
+        function () {
+            layer.msg('fail', 1);
+        });
+    }
+    }
+
+    function deleteOrder(itemId) {
+        if (itemId)
+            layer.confirm("Are you sure you want to delete ?",
+                function (index) {
+                    ajaxPost("@Url.Action("DeleteForWeb", "Order")",
+                        { orderId: itemId },
+                        function (result) {
+                            layer.msg('success', 1, {}, function () {
+                                window.location.reload();
+                            });
+
+                        },
+                        function () {
+                            layer.msg('fail', 1);
+                        });
+                },
+                "Tips",
+                function (index) {
+                    layer.close(index);
+                });
+    }
+    </script>
+
+}
