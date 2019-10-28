@@ -59,10 +59,10 @@ namespace WrightWayRestaurant.Web.Controllers
                 {
                     Directory.CreateDirectory(savePath);
                 }
-
-                string saveFile = savePath + file.FileName;
+                string extName = Path.GetExtension(file.FileName);
+                string saveFile = savePath + entity.FoodName + extName;
                 file.SaveAs(saveFile);
-                entity.Foodimg = "Upload/Food/" + file.FileName;
+                entity.Foodimg = "Upload/Food/" + entity.FoodName + extName;
             }
             entity.UserId = ManageContext.Current.SessionUser.UserId;
             entity.CreateTime = DateTime.Now;
@@ -88,9 +88,10 @@ namespace WrightWayRestaurant.Web.Controllers
                 {
                     Directory.CreateDirectory(savePath);
                 }
-                string saveFile = savePath + file.FileName;
+                string extName = Path.GetExtension(file.FileName);
+                string saveFile = savePath + entity.FoodName + extName;
                 file.SaveAs(saveFile);
-                entity.Foodimg = "Upload/Food/" + file.FileName;
+                entity.Foodimg = "Upload/Food/" + entity.FoodName + extName;
             }
             entity.UserId = ManageContext.Current.SessionUser.UserId;
             entity.CreateTime = DateTime.Now;

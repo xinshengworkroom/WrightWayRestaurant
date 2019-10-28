@@ -167,8 +167,10 @@
             { model :params},
             function (result) {
                 if (result.Code == -200) {
-                    layer.msg('please login', 1, { type: 2 });
-                    window.location = "@Url.Action("Login", "Customer")";
+                    layer.msg('please login', 1, { type: 2 }, function () {
+                        window.location = "@Url.Action("Login", "Customer")";
+                    });
+                    
                 } else {                    
                     if (result.Code == 0) {
                         layer.msg(result.Message, 1, { type: 1 }, function () {
@@ -177,7 +179,7 @@
                         //loadList(1);
                     } else {
                         layer.msg(result.Message, 2, { type: 3 }, function () {
-                            //window.location.reload();
+                            window.location.reload();
                         });
                     }
                 }

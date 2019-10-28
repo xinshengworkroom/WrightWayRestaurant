@@ -101,7 +101,7 @@
                 var json = e.responseJSON;
                 if (json && json.Code != undefined && json.Code == 0) {
                     $('.btn-submit').val('submit success jumping...');                   
-                    layer.msg("Register success", 2000, {}, function () {
+                    layer.msg("Register success", 2, {type:1}, function () {
                         window.location = "@Url.Action( "Login", "Customer", new { area=""})";
                     });
 
